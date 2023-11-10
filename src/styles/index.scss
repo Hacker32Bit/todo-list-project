@@ -10,11 +10,19 @@
 
 .app {
   font: var(--font-m);
-  background: var(--bg-primary-theme);
+  background: var(--bg-primary-color);
   color: var(--primary-color);
   min-height: 100vh;
 }
 
-.header, .sidebar {
+.container {
   background: var(--bg-primary-color);
+  height: calc(100vh - 64px);
+}
+
+.container h1 {
+  color: #ecf0f1;
+  padding: 20px;
+  text-align: center;
+  background: var(--bg-secondary-color);
 }

@@ -1,9 +1,14 @@
 import React from "react";
 
-const LoginPage: React.FC = () => {
-    return(
-        <h1>Login Page</h1>
-    )
-}
+import LoginForm from "widgets/LoginForm";
 
-export default LoginPage
+const LoginPage: React.FC = () => {
+  return (
+      <div className="container blue">
+        <h1>Login Page</h1>
+        <LoginForm />
+      </div>
+  );
+};
+
+export default LoginPage;

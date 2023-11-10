@@ -1,5 +1,6 @@
 .header {
-  padding: 20px;
+  padding: 0 20px;
+  height: 64px;
   background: var(--bg-secondary-theme);
 }
 
@@ -13,7 +14,6 @@
 .header a {
     font: var(--font-m);
     text-decoration: none;
-    display: block;
     padding: 0 10px;
     color: var(--primary-color);
 }
@@ -27,10 +27,21 @@
 }
 
 .nav-left ul li {
+    cursor: pointer;
+    padding: 20px 15px;
     float: left;
 }
 
+.nav-left ul li:hover {
+    background: var(--bg-primary-theme);
+}
+
 .nav-right ul li {
+    cursor: pointer;
+    padding: 20px 15px;
     float: right;
 }
 
+.nav-right ul li:hover {
+    background: var(--bg-primary-theme);
+}

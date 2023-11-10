@@ -1,9 +1,14 @@
 import React from "react";
 
-const RegisterPage: React.FC = () => {
-    return(
-        <h1>Register Page</h1>
-    )
-}
+import RegisterWidget from "widgets/RegisterWidget";
 
-export default RegisterPage
+const RegisterPage: React.FC = () => {
+  return (
+    <div className="container blue">
+      <h1>Register Page</h1>
+      <RegisterWidget />
+    </div>
+  );
+};
+
+export default RegisterPage;

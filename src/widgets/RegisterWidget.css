@@ -1,0 +1,27 @@
+.login-form button {
+    background: #2ecc71;
+}
+
+.login-form button:hover {
+    background-color: #27ae60;
+}
+
+.login-form label.rule {
+    font: var(--font-s)
+}
+
+.login-form a.rule {
+    color: var(--primary-color);
+}
+
+.login-form a.rule:hover {
+    color: var(--secondary-color);
+}
+
+.login-form input[type="checkbox"] {
+    margin-right: 5px;
+    accent-color: var(--bg-secondary-theme);
+    width: 17px;
+    height: 17px;
+    float: left;
+}
