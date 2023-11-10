@@ -4,7 +4,7 @@ import LoginForm from "widgets/LoginForm";
 
 const LoginPage: React.FC = () => {
   return (
-      <div className="container blue">
+      <div>
         <h1>Login Page</h1>
         <LoginForm />
       </div>

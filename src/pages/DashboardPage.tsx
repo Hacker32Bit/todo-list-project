@@ -1,9 +1,14 @@
 import React from "react";
+import DashboardWidget from "widgets/DashboardWidget";
+import SidebarWidget from "widgets/SidebarWidget";
 
 const DashboardPage: React.FC = () => {
-    return(
-        <h1>Dashboard Page</h1>
-    )
-}
+  return (
+    <div>
+      <SidebarWidget />
+      <DashboardWidget />
+    </div>
+  );
+};
 
-export default DashboardPage
+export default DashboardPage;

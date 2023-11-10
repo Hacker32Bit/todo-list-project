@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import "./HeaderWidget.css";
 
 const HeaderWidget: React.FC = () => {
-  const [isLogged, setIsLogged] = useState(false);
+  const [isLogged, setIsLogged] = useState(true);
 
   return (
     <div className="header">
@@ -25,8 +25,8 @@ const HeaderWidget: React.FC = () => {
         <div className="nav-right">
           <div className="profile">
             <ul>
-              <Link to="/setting">
-                <li>Setting</li>
+              <Link to="/settingss">
+                <li>Settings</li>
               </Link>
               <Link to="/dashboard">
                 <li>Dashboard</li>

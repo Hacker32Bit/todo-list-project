@@ -1,0 +1,37 @@
+.sidebar{
+    width: 300px;
+    height: calc(100vh - 64px);
+    display: inline-block;
+    background: var(--bg-primary-theme);
+}
+
+.sidebar .profile {
+    padding: 20px;
+}
+
+.line {
+    border-top: 1px solid var(--bg-secondary-theme);
+}
+
+.sidebar .menu {
+    padding: 20px 0;
+}
+
+.sidebar .menu a {
+    text-decoration: none;
+    list-style: none;
+    color: var(--primary-color);
+}
+
+.sidebar .menu a:hover {
+    color: var(--secondary-color);
+}
+
+.sidebar .menu ul li {
+    padding: 5px 20px;
+}
+
+.sidebar .menu ul li:hover {
+    background: var(--bg-secondary-theme);
+    cursor: pointer;
+}

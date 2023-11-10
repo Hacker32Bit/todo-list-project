@@ -4,7 +4,7 @@ import RegisterWidget from "widgets/RegisterWidget";
 
 const RegisterPage: React.FC = () => {
   return (
-    <div className="container blue">
+    <div>
       <h1>Register Page</h1>
       <RegisterWidget />
     </div>

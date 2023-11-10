@@ -1,0 +1,6 @@
+.container .dashboard {
+  width: calc(100vw - 300px);
+  position: fixed;
+  display: inline-block;
+  background: var(--bg-primary-theme);
+}
