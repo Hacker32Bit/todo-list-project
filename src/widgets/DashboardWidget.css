@@ -4,3 +4,12 @@
   display: inline-block;
   background: var(--bg-primary-theme);
 }
+
+.dashboard h1 {
+  text-align: left;
+}
+
+.board {
+  background: var(--bg-primary-color);
+  padding: 20px;
+}
