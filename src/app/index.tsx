@@ -3,6 +3,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import "../styles/index.scss";
 import HeaderWidget from "widgets/HeaderWidget";
+import useTheme from "theme/useTheme";
+import useColor from "theme/useColor";
 
 const LoginPage = lazy(() => import("../pages/LoginPage"));
 const RegisterPage = lazy(() => import("../pages/RegisterPage"));
@@ -15,12 +17,15 @@ const DashboardPage = lazy(() => import("../pages/DashboardPage"));
 const App = () => {
   const [isLogged, setIsLogged] = useState(true);
 
+  const {theme} = useTheme()
+  const {color} = useColor()
+
   return (
     <BrowserRouter>
-      <div className={`app light`}>
+      <div className={`app ${theme}`}>
         <HeaderWidget />
         <Suspense fallback={<h1>Loading...</h1>}>
-          <div className={`container purple`}>
+          <div className={`container ${color}`}>
             <Routes>
               <Route path="/login" element={<LoginPage />} />
               <Route path="/register" element={<RegisterPage />} />

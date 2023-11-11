@@ -1,13 +1,28 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { AiOutlineBgColors } from "react-icons/ai";
+import { BsFillSunFill, BsFillMoonFill } from "react-icons/bs";
 
 import "./HeaderWidget.css";
+import useTheme from "theme/useTheme";
+import useColor from "theme/useColor";
 
 const HeaderWidget: React.FC = () => {
+  const { theme, toggleTheme } = useTheme();
+  const { toggleColor } = useColor();
+
   const [isLogged, setIsLogged] = useState(true);
 
   return (
     <div className="header">
+      <div className="theme">
+        <button className="btn theme-btn" onClick={toggleTheme}>
+          {theme === "dark" ? <BsFillSunFill /> : <BsFillMoonFill />}
+        </button>
+        <button className="btn color-btn" onClick={toggleColor}>
+          <AiOutlineBgColors />
+        </button>
+      </div>
       <div className="nav-left">
         <ul>
           <Link to="/">
@@ -25,7 +40,7 @@ const HeaderWidget: React.FC = () => {
         <div className="nav-right">
           <div className="profile">
             <ul>
-              <Link to="/settingss">
+              <Link to="/settings">
                 <li>Settings</li>
               </Link>
               <Link to="/dashboard">

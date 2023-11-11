@@ -22,6 +22,35 @@
     color: var(--secondary-color);
 }
 
+.theme {
+    float: left;
+    margin-top: 13px;
+    margin-right: 20px;
+}
+
+.theme .btn {
+    
+    padding: 5px 10px;
+    background-color: var(--bg-primary-theme);
+    color: var(--primary-theme);
+    border: 1px solid var(--secondary-color);
+    vertical-align: middle;
+}
+
+.theme .theme-btn {
+    border-radius: 5px 0 0 5px;
+    margin-right: -1px;
+}
+
+.theme .color-btn {
+    border-radius: 0 5px 5px 0;
+}
+
+.theme .btn:hover {
+    background-color: var(--secondary-color);
+    color: var(--bg-secondary-theme);
+}
+
 .nav-left {
     float: left;
 }
