@@ -15,7 +15,7 @@ const AboutPage = lazy(() => import("../pages/AboutPage"));
 const DashboardPage = lazy(() => import("../pages/DashboardPage"));
 
 const App = () => {
-  const [isLogged, setIsLogged] = useState(true);
+  const [isLogged, setIsLogged] = useState(false);
 
   const {theme} = useTheme()
   const {color} = useColor()

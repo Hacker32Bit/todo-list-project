@@ -11,7 +11,7 @@ const HeaderWidget: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
   const { toggleColor } = useColor();
 
-  const [isLogged, setIsLogged] = useState(true);
+  const [isLogged, setIsLogged] = useState(false);
 
   return (
     <div className="header">

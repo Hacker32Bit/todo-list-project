@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import "./LoginForm.css";
 import "./RegisterWidget.css";
+import "./LoginForm.css";
 
 const RegisterWidget: React.FC = () => {
   return (
@@ -23,7 +23,7 @@ const RegisterWidget: React.FC = () => {
           </label>
         </div>
 
-        <button className="btn">Sign Up</button>
+        <button className="register">Sign Up</button>
         <p>
           have account? <Link to="/login">Sing In now!</Link>
         </p>
