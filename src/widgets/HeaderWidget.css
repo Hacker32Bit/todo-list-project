@@ -47,8 +47,9 @@
 }
 
 .theme .btn:hover {
+    cursor: pointer;
     background-color: var(--secondary-color);
-    color: var(--bg-secondary-theme);
+    color: var(--bg-primary-theme);
 }
 
 .nav-left {
@@ -73,4 +74,22 @@
 
 .nav-right ul li:hover {
     background: var(--bg-primary-theme);
+}
+
+.nav-right .profile img {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    margin: 11px 5px;
+    border: 2px solid var(--bg-primary-theme);
+}
+
+.nav-right .profile img:hover {
+    cursor: pointer;
+    margin: 8px 2px;
+    border: 5px solid var(--bg-primary-theme);
+}
+
+.profile-photo {
+    float: right;
 }
