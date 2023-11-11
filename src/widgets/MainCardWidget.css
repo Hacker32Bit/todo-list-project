@@ -6,8 +6,34 @@
     border-radius: 10px;
 }
 
-.main-card h3 {
-    padding: 10px;
+
+.title {
+    display: block;
+    height: 35px;
+    padding: 5px;
+}
+
+.title h3 {
+    float: left;
+    padding: 5px;
+}
+
+.title svg {
+    display: inline-block; 
+    height: 24px;
+    width: 24px;
+}
+
+.title .options-btn {
+    float: right;
+    height: 24px;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.title .options-btn:hover {
+    cursor: pointer;
+    background: var(--bg-primary-theme);
 }
 
 .actions {

@@ -12,14 +12,14 @@ const CardWidget: React.FC = () => {
         <p>Some text Title 1inside main card</p>
       </div>
       <div className="card-actions">
-        <div className="btn">
+        <div className="btn" title="Description">
           <MdOutlineSubject />
         </div>
-        <div className="btn">
+        <div className="btn" title="Comments">
           <BiSolidCommentDetail />
           <span>1</span>
         </div>
-        <div className="btn">
+        <div className="btn" title="Edit">
           <FaRegPenToSquare />
         </div>
       </div>

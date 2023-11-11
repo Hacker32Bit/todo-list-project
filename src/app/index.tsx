@@ -17,7 +17,7 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <div className={`app dark`}>
+      <div className={`app light`}>
         <HeaderWidget />
         <Suspense fallback={<h1>Loading...</h1>}>
           <div className={`container purple`}>
