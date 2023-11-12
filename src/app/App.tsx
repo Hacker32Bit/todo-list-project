@@ -1,18 +1,18 @@
 import React, { Suspense, lazy, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import "../styles/index.scss";
+import "./styles/index.scss";
 import HeaderWidget from "widgets/HeaderWidget";
-import useTheme from "theme/useTheme";
-import useColor from "theme/useColor";
+import { useColor } from "./providers/ColorProvider";
+import { useTheme } from "./providers/ThemeProvider";
 
-const LoginPage = lazy(() => import("../pages/LoginPage"));
-const RegisterPage = lazy(() => import("../pages/RegisterPage"));
-const ContactPage = lazy(() => import("../pages/ContactPage"));
-const MainPage = lazy(() => import("../pages/MainPage"));
-const SettingsPage = lazy(() => import("../pages/SettingsPage"));
-const AboutPage = lazy(() => import("../pages/AboutPage"));
-const DashboardPage = lazy(() => import("../pages/DashboardPage"));
+const LoginPage = lazy(() => import("../pages/LoginPage/ui/LoginPage"));
+const RegisterPage = lazy(() => import("../pages/RegisterPage/ui/RegisterPage"));
+const ContactPage = lazy(() => import("../pages/ContactPage/ui/ContactPage"));
+const MainPage = lazy(() => import("../pages/MainPage/ui/MainPage"));
+const SettingsPage = lazy(() => import("../pages/SettingsPage/ui/SettingsPage"));
+const AboutPage = lazy(() => import("../pages/AboutPage/ui/AboutPage"));
+const DashboardPage = lazy(() => import("../pages/DashboardPage/ui/DashboardPage"));
 
 const App = () => {
   const [isLogged, setIsLogged] = useState(false);

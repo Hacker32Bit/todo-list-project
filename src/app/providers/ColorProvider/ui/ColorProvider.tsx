@@ -3,7 +3,7 @@ import {
   Color,
   LOCAL_STORAGE_COLOR_KEY,
   ColorContext,
-} from "./ColorContext";
+} from "../lib/ColorContext";
 
 const defaultColor =
   (localStorage.getItem(LOCAL_STORAGE_COLOR_KEY) as Color) || Color.BLUE;

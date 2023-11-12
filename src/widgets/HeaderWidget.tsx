@@ -4,8 +4,8 @@ import { AiOutlineBgColors } from "react-icons/ai";
 import { BsFillSunFill, BsFillMoonFill } from "react-icons/bs";
 
 import "./HeaderWidget.css";
-import useTheme from "theme/useTheme";
-import useColor from "theme/useColor";
+import { useTheme } from "app/providers/ThemeProvider";
+import { useColor } from "app/providers/ColorProvider";
 
 const HeaderWidget: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
