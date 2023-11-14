@@ -2,16 +2,21 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { AiOutlineBgColors } from "react-icons/ai";
 import { BsFillSunFill, BsFillMoonFill } from "react-icons/bs";
+import { User } from "firebase/auth";
+
 
 import "./HeaderWidget.css";
 import { useTheme } from "app/providers/ThemeProvider";
 import { useColor } from "app/providers/ColorProvider";
 
-const HeaderWidget: React.FC = () => {
+interface UserProps {
+  user: User | null;
+  handleSignOut: () => void;
+}
+
+const HeaderWidget: React.FC<UserProps> = ({ user, handleSignOut }) => {
   const { theme, toggleTheme } = useTheme();
   const { toggleColor } = useColor();
-
-  const [isLogged, setIsLogged] = useState(false);
 
   return (
     <div className="header">
@@ -36,16 +41,16 @@ const HeaderWidget: React.FC = () => {
           </Link>
         </ul>
       </div>
-      {isLogged ? (
+      {user ? (
         <div className="nav-right">
           <div className="profile">
             <div className="profile-photo">
               <img
-                src="https://fs01.cap.ru//www21-11/galatr/person/cb45deff-7216-4306-80f7-9e48d03f437e/no_avatar_3st4mbc2.png"
+                src={user.photoURL || "https://fs01.cap.ru//www21-11/galatr/person/cb45deff-7216-4306-80f7-9e48d03f437e/no_avatar_3st4mbc2.png"}
                 alt="User"
               ></img>
             </div>
-
+            <button onClick={handleSignOut}>Sign Out</button>
             <ul>
               <Link to="/settings">
                 <li>Settings</li>

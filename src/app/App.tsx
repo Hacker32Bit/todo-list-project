@@ -1,45 +1,72 @@
-import React, { Suspense, lazy, useState } from "react";
+import { Suspense, lazy, useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { onAuthStateChanged, signOut, User } from "firebase/auth";
 
 import "./styles/index.scss";
 import HeaderWidget from "widgets/HeaderWidget";
 import { useColor } from "./providers/ColorProvider";
 import { useTheme } from "./providers/ThemeProvider";
+import SignIn from "features/SignIn";
+import { auth } from "../firebase";
 
-const LoginPage = lazy(() => import("../pages/LoginPage/ui/LoginPage"));
-const RegisterPage = lazy(() => import("../pages/RegisterPage/ui/RegisterPage"));
-const ContactPage = lazy(() => import("../pages/ContactPage/ui/ContactPage"));
-const MainPage = lazy(() => import("../pages/MainPage/ui/MainPage"));
-const SettingsPage = lazy(() => import("../pages/SettingsPage/ui/SettingsPage"));
-const AboutPage = lazy(() => import("../pages/AboutPage/ui/AboutPage"));
-const DashboardPage = lazy(() => import("../pages/DashboardPage/ui/DashboardPage"));
+const LoginPage = lazy(() => import("../pages/LoginPage"));
+const RegisterPage = lazy(() => import("../pages/RegisterPage"));
+const ContactPage = lazy(() => import("../pages/ContactPage"));
+const MainPage = lazy(() => import("../pages/MainPage"));
+const SettingsPage = lazy(() => import("../pages/SettingsPage"));
+const AboutPage = lazy(() => import("../pages/AboutPage"));
+const DashboardPage = lazy(() => import("../pages/DashboardPage"));
 
 const App = () => {
-  const [isLogged, setIsLogged] = useState(false);
+  const [user, setUser] = useState<User | null>(null);
 
-  const {theme} = useTheme()
-  const {color} = useColor()
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      console.log(currentUser);
+      setUser(currentUser);
+    });
+
+    return unsubscribe;
+  }, []);
+
+  const handleSignOut = () => {
+    signOut(auth).catch((err) => console.log(err));
+  };
+
+  const { theme } = useTheme();
+  const { color } = useColor();
 
   return (
     <BrowserRouter>
       <div className={`app ${theme}`}>
-        <HeaderWidget />
+        <HeaderWidget user={user} handleSignOut={handleSignOut} />
+        <SignIn />
         <Suspense fallback={<h1>Loading...</h1>}>
           <div className={`container ${color}`}>
             <Routes>
-              <Route path="/login" element={<LoginPage />} />
-              <Route path="/register" element={<RegisterPage />} />
-              <Route path="/about" element={<AboutPage />} />
-              <Route path="/contact" element={<ContactPage />} />
-              <Route path="/settings" element={<SettingsPage />} />
-              <Route path="/dashboard" element={<DashboardPage />} />
-              <Route path="/" element={<MainPage />} />
+              {user ? (
+                <>
+                  <Route path="/about" element={<AboutPage />} />
+                  <Route path="/contact" element={<ContactPage />} />
+                  <Route path="/settings" element={<SettingsPage />} />
+                  <Route path="/dashboard" element={<DashboardPage />} />
+                  <Route path="/" element={<MainPage />} />
+                </>
+              ) : (
+                <>
+                  <Route path="/login" element={<LoginPage />} />
+                  <Route path="/register" element={<RegisterPage />} />
+                  <Route path="/about" element={<AboutPage />} />
+                  <Route path="/contact" element={<ContactPage />} />
+                  <Route path="/" element={<MainPage />} />
+                </>
+              )}
             </Routes>
           </div>
         </Suspense>
       </div>
     </BrowserRouter>
-  ); 
+  );
 };
 
 export default App;
