@@ -6,7 +6,6 @@ import "./styles/index.scss";
 import HeaderWidget from "widgets/HeaderWidget";
 import { useColor } from "./providers/ColorProvider";
 import { useTheme } from "./providers/ThemeProvider";
-import SignIn from "features/SignIn";
 import { auth } from "../firebase";
 
 const LoginPage = lazy(() => import("../pages/LoginPage"));
@@ -40,7 +39,6 @@ const App = () => {
     <BrowserRouter>
       <div className={`app ${theme}`}>
         <HeaderWidget user={user} handleSignOut={handleSignOut} />
-        <SignIn />
         <Suspense fallback={<h1>Loading...</h1>}>
           <div className={`container ${color}`}>
             <Routes>

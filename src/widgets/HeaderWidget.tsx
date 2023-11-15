@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { AiOutlineBgColors } from "react-icons/ai";
 import { BsFillSunFill, BsFillMoonFill } from "react-icons/bs";
 import { User } from "firebase/auth";
-
 
 import "./HeaderWidget.css";
 import { useTheme } from "app/providers/ThemeProvider";
@@ -46,12 +45,17 @@ const HeaderWidget: React.FC<UserProps> = ({ user, handleSignOut }) => {
           <div className="profile">
             <div className="profile-photo">
               <img
-                src={user.photoURL || "https://fs01.cap.ru//www21-11/galatr/person/cb45deff-7216-4306-80f7-9e48d03f437e/no_avatar_3st4mbc2.png"}
+                src={
+                  user.photoURL ||
+                  "https://fs01.cap.ru//www21-11/galatr/person/cb45deff-7216-4306-80f7-9e48d03f437e/no_avatar_3st4mbc2.png"
+                }
                 alt="User"
               ></img>
             </div>
-            <button onClick={handleSignOut}>Sign Out</button>
             <ul>
+              <Link to="/" onClick={handleSignOut}>
+                <li>Sign Out</li>
+              </Link>
               <Link to="/settings">
                 <li>Settings</li>
               </Link>

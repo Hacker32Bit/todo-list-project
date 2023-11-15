@@ -35,7 +35,7 @@
     outline: none;
 }
 
-.login-form button {
+.login-form button.btn {
     margin: 10px 0px;
     font: var(--font-l);
     color: #ecf0f1;
@@ -46,10 +46,34 @@
     border-radius: 10px;
 }
 
-.login-form button:hover {
+.login-form button.btn:hover {
     cursor: pointer;
     background-color: #d35400;
 }
+
+.login-form .social-buttons {
+    margin: 0 -10px;
+    display: flex;
+}
+
+.login-form .social-buttons button {
+    padding: 10px;
+    margin: 10px;
+    font-size: 30px;
+    width: auto;
+    flex-basis: 100%;
+    background: var(--bg-secondary-theme);
+}
+
+.login-form .social-buttons svg {
+    vertical-align: top;
+}
+
+.login-form .social-buttons button:hover {
+    background: var(--primary-color);
+    color: var(--bg-secondary-theme);
+}
+
 
 .login-form a {
     text-decoration: none;

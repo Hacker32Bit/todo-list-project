@@ -23,7 +23,7 @@ const RegisterWidget: React.FC = () => {
           </label>
         </div>
 
-        <button className="register">Sign Up</button>
+        <button className="btn register">Sign Up</button>
         <p>
           have account? <Link to="/login">Sing In now!</Link>
         </p>

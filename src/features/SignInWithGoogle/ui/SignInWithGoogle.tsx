@@ -1,8 +1,9 @@
 import { FC } from "react";
 import { auth } from "../../../firebase";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { FcGoogle } from "react-icons/fc"
 
-const SignIn: FC = () => {
+const SignInWithGoogle: FC = () => {
   const singIn = async () => {
     const provider = new GoogleAuthProvider();
 
@@ -14,10 +15,10 @@ const SignIn: FC = () => {
   };
 
   return (
-    <button onClick={singIn}>
-      Sign In with Google
+    <button className="btn" onClick={singIn}>
+      <FcGoogle />
     </button>
   );
 };
 
-export default SignIn;
+export default SignInWithGoogle;
