@@ -4,10 +4,10 @@ import SidebarWidget from "widgets/SidebarWidget";
 
 const DashboardPage: React.FC = () => {
   return (
-    <div>
+    <>
       <SidebarWidget />
       <DashboardWidget />
-    </div>
+    </>
   );
 };
 
