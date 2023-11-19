@@ -1,7 +1,7 @@
 import React from "react";
 
 import "./DashboardWidget.css";
-import MainCardWidget from "./MainCardWidget";
+import MainCardWidget from "../../MainCardWidget/ui/MainCardWidget";
 
 const DashboardWidget: React.FC = () => {
   return (

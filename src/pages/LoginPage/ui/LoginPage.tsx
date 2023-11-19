@@ -1,6 +1,6 @@
 import React from "react";
 
-import LoginForm from "widgets/LoginForm";
+import LoginForm from "widgets/LoginFormWidget/ui/LoginFormWidget";
 
 const LoginPage: React.FC = () => {
   return (

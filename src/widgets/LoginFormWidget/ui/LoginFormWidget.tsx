@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import "./LoginForm.css";
+import "./LoginFormWidget.css";
 import SignInWithGoogle from "features/SignInWithGoogle";
 import SignInWithGithub from "features/SignInWithGithub";
 
-const LoginForm: React.FC = () => {
+const LoginFormWidget: React.FC = () => {
 
   return (
       <div className="login-form">
@@ -29,4 +29,4 @@ const LoginForm: React.FC = () => {
   );
 };
 
-export default LoginForm;
+export default LoginFormWidget;

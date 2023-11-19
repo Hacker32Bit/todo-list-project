@@ -1,6 +1,6 @@
 import React from "react";
 
-import RegisterWidget from "widgets/RegisterWidget";
+import RegisterWidget from "widgets/RegisterFormWidget/ui/RegisterFormWidget";
 
 const RegisterPage: React.FC = () => {
   return (

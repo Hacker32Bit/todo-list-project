@@ -1,7 +1,7 @@
 import React from "react";
 import { BsCheck2All, BsPlusLg } from "react-icons/bs";
 import { SlOptions } from "react-icons/sl"
-import CardWidget from "./CardWidget";
+import CardWidget from "../../CardWidget";
 
 import "./MainCardWidget.css";
 

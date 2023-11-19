@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { onAuthStateChanged, signOut, User } from "firebase/auth";
 
 import "./styles/index.scss";
-import HeaderWidget from "widgets/HeaderWidget";
+import HeaderWidget from "widgets/HeaderWidget/ui/HeaderWidget";
 import { useColor } from "./providers/ColorProvider";
 import { useTheme } from "./providers/ThemeProvider";
 import { auth } from "../firebase";

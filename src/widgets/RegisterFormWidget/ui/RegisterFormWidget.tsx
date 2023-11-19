@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import "./RegisterWidget.css";
-import "./LoginForm.css";
+import "./RegisterFormWidget.css";
+import "../../LoginFormWidget/ui/LoginFormWidget.css"
 
-const RegisterWidget: React.FC = () => {
+const RegisterFormWidget: React.FC = () => {
   return (
     <div className="login-form">
       <form>
@@ -38,4 +38,4 @@ const RegisterWidget: React.FC = () => {
   );
 };
 
-export default RegisterWidget;
+export default RegisterFormWidget;
