@@ -3,15 +3,19 @@ import React from "react";
 import "./DashboardWidget.css";
 import MainCardWidget from "../../MainCardWidget/ui/MainCardWidget";
 
-const DashboardWidget: React.FC = () => {
+import { DashboardPageProps } from "pages/DashboardPage/ui/DashboardPage.interface";
+
+const DashboardWidget: React.FC<DashboardPageProps> = ({ items }) => {
+
   return (
     <div className="dashboard">
       <h1>Dashboard</h1>
       <div className="board">
-        <MainCardWidget />
-        <MainCardWidget />
-        <MainCardWidget />
-        <MainCardWidget />
+        {items.map((el) => {
+        return (
+          <MainCardWidget key={el.id} {...el}/>
+        )
+        })}
       </div>
     </div>
   );

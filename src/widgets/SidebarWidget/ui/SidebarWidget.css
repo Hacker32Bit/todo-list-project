@@ -14,7 +14,7 @@
 }
 
 .sidebar .menu {
-    padding: 20px 0;
+    padding: 10px 0;
 }
 
 .sidebar .menu a {
@@ -50,4 +50,13 @@
     margin: -2px;
     margin-right: 8px;
     border: 5px solid var(--bg-secondary-theme);
+}
+
+.sidebar .menu li svg {
+    vertical-align: text-top;
+}
+
+.sidebar .menu h3 {
+    padding: 0 20px;
+    margin-bottom: 10px;
 }

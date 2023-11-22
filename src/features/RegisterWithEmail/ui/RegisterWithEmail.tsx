@@ -1,6 +1,7 @@
 import React, { FC, useEffect, useState } from "react";
 import { auth } from "../../../firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 const RegisterWithEmail: FC = () => {
   const [email, setEmail] = useState<string>("");
@@ -8,6 +9,8 @@ const RegisterWithEmail: FC = () => {
   const [cpassword, setCpassword] = useState<string>("");
   const [rules, setRules] = useState<boolean>(false);
   const [errorList, setErrorList] = useState<string[]>([]);
+
+  const navigate = useNavigate()
 
   const onChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
@@ -60,6 +63,7 @@ const RegisterWithEmail: FC = () => {
       .then((userCredential) => {
         // Signed in
         console.log(userCredential);
+        navigate('/dashboard');
         // ...
       })
       .catch((error) => {

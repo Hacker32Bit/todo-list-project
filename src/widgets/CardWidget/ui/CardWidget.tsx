@@ -3,13 +3,15 @@ import { MdOutlineSubject } from "react-icons/md"
 import { BiSolidCommentDetail } from "react-icons/bi"
 import { FaRegPenToSquare } from "react-icons/fa6"
 
+import { TasksProps } from "pages/DashboardPage/ui/DashboardPage.interface";
+
 import "./CardWidget.css"
 
-const CardWidget: React.FC = () => {
+const CardWidget: React.FC<TasksProps> = ({ id, title, description, author, date, comments }) => {
   return (
     <div className="card">
       <div className="content">
-        <p>Some text Title 1inside main card</p>
+        <p>{title}</p>
       </div>
       <div className="card-actions">
         <div className="btn" title="Description">

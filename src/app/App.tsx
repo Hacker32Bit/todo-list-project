@@ -19,6 +19,207 @@ const DashboardPage = lazy(() => import("../pages/DashboardPage"));
 const App = () => {
   const [user, setUser] = useState<User | null>(null);
 
+  const items = [
+    {
+      id: 1,
+      mainTitle: "Title 1",
+      author: "Artur",
+      date: new Date("2023-11-4"),
+      tasks: [
+        {
+          id: 1,
+          title: "Task title 1",
+          description: "Some long description text",
+          author: "Artur",
+          date: new Date("2023-11-4"),
+          comments: [
+            {
+              id: 1,
+              author: "Artur",
+              message: "Some coment",
+              date: new Date("2023-11-4"),
+              reply: [
+                {
+                  id: 1,
+                  author: "Artur",
+                  message: "Some reply coment",
+                  date: new Date("2023-11-4"),
+                },
+                {
+                  id: 2,
+                  author: "Pogos",
+                  message: "Some second reply coment",
+                  date: new Date("2023-11-4"),
+                },
+              ],
+            },
+          ],
+        },
+        {
+          id: 2,
+          title: "Task title 2",
+          description: "Some long description text",
+          author: "Artur",
+          date: new Date("2023-11-4"),
+          comments: [
+            {
+              id: 1,
+              author: "Artur",
+              message: "Some coment",
+              date: new Date("2023-11-4"),
+              reply: [
+                {
+                  id: 1,
+                  author: "Artur",
+                  message: "Some reply coment",
+                  date: new Date("2023-11-4"),
+                },
+                {
+                  id: 2,
+                  author: "Pogos",
+                  message: "Some second reply coment",
+                  date: new Date("2023-11-4"),
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: 2,
+      mainTitle: "Title 2",
+      author: "Gektor",
+      date: new Date("2023-10-4"),
+      tasks: [
+        {
+          id: 1,
+          title: "Task title 1",
+          description: "Some long description text",
+          author: "Artur",
+          date: new Date("2023-11-4"),
+          comments: [
+            {
+              id: 1,
+              author: "Artur",
+              message: "Some coment",
+              date: new Date("2023-11-4"),
+              reply: [
+                {
+                  id: 1,
+                  author: "Artur",
+                  message: "Some reply coment",
+                  date: new Date("2023-11-4"),
+                },
+                {
+                  id: 2,
+                  author: "Pogos",
+                  message: "Some second reply coment",
+                  date: new Date("2023-11-4"),
+                },
+              ],
+            },
+          ],
+        },
+        {
+          id: 2,
+          title: "Task title 2",
+          description: "Some long description text",
+          author: "Artur",
+          date: new Date("2023-11-4"),
+          comments: [
+            {
+              id: 1,
+              author: "Artur",
+              message: "Some coment",
+              date: new Date("2023-11-4"),
+              reply: [
+                {
+                  id: 1,
+                  author: "Artur",
+                  message: "Some reply coment",
+                  date: new Date("2023-11-4"),
+                },
+                {
+                  id: 2,
+                  author: "Pogos",
+                  message: "Some second reply coment",
+                  date: new Date("2023-11-4"),
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: 3,
+      mainTitle: "Title 3",
+      author: "Pogos",
+      date: new Date("2023-11-2"),
+      tasks: [
+        {
+          id: 1,
+          title: "Task title 1",
+          description: "Some long description text",
+          author: "Artur",
+          date: new Date("2023-11-4"),
+          comments: [
+            {
+              id: 1,
+              author: "Artur",
+              message: "Some coment",
+              date: new Date("2023-11-4"),
+              reply: [
+                {
+                  id: 1,
+                  author: "Artur",
+                  message: "Some reply coment",
+                  date: new Date("2023-11-4"),
+                },
+                {
+                  id: 2,
+                  author: "Pogos",
+                  message: "Some second reply coment",
+                  date: new Date("2023-11-4"),
+                },
+              ],
+            },
+          ],
+        },
+        {
+          id: 2,
+          title: "Task title 2",
+          description: "Some long description text",
+          author: "Artur",
+          date: new Date("2023-11-4"),
+          comments: [
+            {
+              id: 1,
+              author: "Artur",
+              message: "Some coment",
+              date: new Date("2023-11-4"),
+              reply: [
+                {
+                  id: 1,
+                  author: "Artur",
+                  message: "Some reply coment",
+                  date: new Date("2023-11-4"),
+                },
+                {
+                  id: 2,
+                  author: "Pogos",
+                  message: "Some second reply coment",
+                  date: new Date("2023-11-4"),
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  ];
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       console.log(currentUser);
@@ -42,23 +243,13 @@ const App = () => {
         <Suspense fallback={<h1>Loading...</h1>}>
           <div className={`container ${color}`}>
             <Routes>
-              {user ? (
-                <>
-                  <Route path="/about" element={<AboutPage />} />
-                  <Route path="/contact" element={<ContactPage />} />
-                  <Route path="/settings" element={<SettingsPage />} />
-                  <Route path="/dashboard" element={<DashboardPage />} />
-                  <Route path="/" element={<MainPage />} />
-                </>
-              ) : (
-                <>
-                  <Route path="/login" element={<LoginPage />} />
-                  <Route path="/register" element={<RegisterPage />} />
-                  <Route path="/about" element={<AboutPage />} />
-                  <Route path="/contact" element={<ContactPage />} />
-                  <Route path="/" element={<MainPage />} />
-                </>
-              )}
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="/contact" element={<ContactPage />} />
+              <Route path="/settings" element={<SettingsPage />} />
+              <Route path="/dashboard" element={<DashboardPage items={items}/>} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/register" element={<RegisterPage />} />
+              <Route path="/" element={<MainPage />} />
             </Routes>
           </div>
         </Suspense>

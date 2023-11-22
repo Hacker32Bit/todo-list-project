@@ -2,11 +2,13 @@ import React from "react";
 import DashboardWidget from "widgets/DashboardWidget/ui/DashboardWidget";
 import SidebarWidget from "widgets/SidebarWidget";
 
-const DashboardPage: React.FC = () => {
+import { DashboardPageProps } from "./DashboardPage.interface";
+
+const DashboardPage: React.FC<DashboardPageProps> = ({ items }) => {
   return (
     <>
       <SidebarWidget />
-      <DashboardWidget />
+      <DashboardWidget items={items}/>
     </>
   );
 };
