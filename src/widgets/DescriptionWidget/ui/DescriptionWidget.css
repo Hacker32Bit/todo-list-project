@@ -1,0 +1,13 @@
+.modal-content {
+    padding: 20px;
+    font: var(--font-m);
+}
+
+.modal-content p {
+    padding-bottom: 10px;
+}
+
+.modal-content span {
+    display: block;
+    padding: 10px 0;
+}

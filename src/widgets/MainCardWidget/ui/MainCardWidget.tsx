@@ -9,7 +9,6 @@ import { ItemsProps } from "pages/DashboardPage/ui/DashboardPage.interface";
 import "./MainCardWidget.css";
 
 const MainCardWidget: React.FC<ItemsProps> = ({ id, mainTitle, author, date, tasks }) => {
-  console.log(tasks)
   return (
     <div className="main-card">
       <div className="title">
@@ -21,7 +20,7 @@ const MainCardWidget: React.FC<ItemsProps> = ({ id, mainTitle, author, date, tas
       {
         tasks?.map((el) => {
           return(
-            <CardWidget key={el.id} {...el}/>
+            <CardWidget key={el.id} card={el}/>
           )
         })
       }

@@ -29,7 +29,7 @@ const App = () => {
         {
           id: 1,
           title: "Task title 1",
-          description: "Some long description text",
+          description: "Some long description text 1",
           author: "Artur",
           date: new Date("2023-11-4"),
           comments: [
@@ -53,12 +53,32 @@ const App = () => {
                 },
               ],
             },
+            {
+              id: 2,
+              author: "Artur",
+              message: "Some coment",
+              date: new Date("2023-11-4"),
+              reply: [
+                {
+                  id: 1,
+                  author: "Artur",
+                  message: "Some reply coment",
+                  date: new Date("2023-11-4"),
+                },
+                {
+                  id: 2,
+                  author: "Pogos",
+                  message: "Some second reply coment",
+                  date: new Date("2023-11-4"),
+                },
+              ],
+            },
           ],
         },
         {
           id: 2,
           title: "Task title 2",
-          description: "Some long description text",
+          description: "Some long description text 2",
           author: "Artur",
           date: new Date("2023-11-4"),
           comments: [
@@ -161,7 +181,7 @@ const App = () => {
         {
           id: 1,
           title: "Task title 1",
-          description: "Some long description text",
+          description: "Some long description text 3",
           author: "Artur",
           date: new Date("2023-11-4"),
           comments: [
@@ -190,7 +210,7 @@ const App = () => {
         {
           id: 2,
           title: "Task title 2",
-          description: "Some long description text",
+          description: "Some long description text 4",
           author: "Artur",
           date: new Date("2023-11-4"),
           comments: [
@@ -222,7 +242,7 @@ const App = () => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      console.log(currentUser);
+      //console.log(currentUser);
       setUser(currentUser);
     });
 

@@ -1,30 +1,61 @@
-import React from "react";
-import { MdOutlineSubject } from "react-icons/md"
-import { BiSolidCommentDetail } from "react-icons/bi"
-import { FaRegPenToSquare } from "react-icons/fa6"
+import React, { useState } from "react";
+import { MdOutlineSubject } from "react-icons/md";
+import { LiaCommentDots, LiaComments } from "react-icons/lia";
+import { FaRegPenToSquare } from "react-icons/fa6";
 
-import { TasksProps } from "pages/DashboardPage/ui/DashboardPage.interface";
+import "./CardWidget.css";
+import ModalWidget from "widgets/ModalWidget";
+import DescriptionWidget from "widgets/DescriptionWidget";
+import { CardWidgetProps } from "./CardWidget.interface";
+import CommentsWidget from "widgets/CommentsWidget";
 
-import "./CardWidget.css"
+const CardWidget: React.FC<CardWidgetProps> = ({ card }) => {
+  const [isOpenDescription, setIsOpenDescription] = useState<boolean>(false);
+  const [isOpenComments, setIsOpenComments] = useState<boolean>(false);
 
-const CardWidget: React.FC<TasksProps> = ({ id, title, description, author, date, comments }) => {
   return (
     <div className="card">
       <div className="content">
-        <p>{title}</p>
+        <p>{card.title}</p>
       </div>
       <div className="card-actions">
-        <div className="btn" title="Description">
+        <div
+          className="btn"
+          title="Description"
+          onClick={() => setIsOpenDescription(true)}
+        >
           <MdOutlineSubject />
         </div>
-        <div className="btn" title="Comments">
-          <BiSolidCommentDetail />
-          <span>1</span>
+        <div
+          className="btn"
+          title="Comments and replys"
+          onClick={() => setIsOpenComments(true)}
+        >
+          <LiaCommentDots />
+          <span>{card.comments.length}</span>
+          <span> </span>
+          <LiaComments />
+          <span>
+            {card.comments.reduce(
+              (acc: number, el: any) => acc + el.reply.length,
+              0
+            )}
+          </span>
         </div>
         <div className="btn" title="Edit">
           <FaRegPenToSquare />
         </div>
       </div>
+      {isOpenDescription ? (
+        <ModalWidget close={setIsOpenDescription}>
+          <DescriptionWidget {...card} />
+        </ModalWidget>
+      ) : null}
+      {isOpenComments ? (
+        <ModalWidget close={setIsOpenComments}>
+          <CommentsWidget {...card}/>
+        </ModalWidget>
+      ) : null}
     </div>
   );
 };
