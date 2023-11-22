@@ -1,10 +1,11 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { auth } from "../../../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 
 const SignInWithEmail: FC = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [errorList, setErrorList] = useState<string[]>([]);
 
   const onChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
@@ -14,17 +15,25 @@ const SignInWithEmail: FC = () => {
     setPassword(event.target.value);
   };
 
+  useEffect(() => {}, [errorList]);
+
   const SignInWithEmail = () => {
-    console.log(email, password)
     signInWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    // Signed in 
-    console.log(userCredential)
-    // ...
-  })
-  .catch((error) => {
-    console.log(error)
-  });
+      .then((userCredential) => {
+        // Signed in
+        console.log(userCredential);
+        // ...
+      })
+      .catch((error) => {
+        setErrorList((prev) => {
+          if (!prev.includes(error.message)) {
+            const newArr = [...prev];
+            newArr.push(error.message);
+            return newArr;
+          }
+          return prev;
+        });
+      });
   };
 
   return (
@@ -40,6 +49,13 @@ const SignInWithEmail: FC = () => {
           onChange={onChangePassword}
         />
       </form>
+      {errorList.length
+        ? errorList.map((el) => (
+            <p className="error" key={el}>
+              {el}
+            </p>
+          ))
+        : null}
       <button className="btn" onClick={SignInWithEmail}>
         Sign In
       </button>

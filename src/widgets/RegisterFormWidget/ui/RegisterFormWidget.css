@@ -8,6 +8,8 @@
 
 .login-form label.rule {
   font: var(--font-s);
+  text-decoration: underline;
+  margin-bottom: 6px;
 }
 
 .login-form a.rule {
@@ -19,6 +21,7 @@
 }
 
 .login-form input[type="checkbox"] {
+  cursor: pointer;
   margin-right: 5px;
   accent-color: var(--bg-secondary-theme);
   width: 17px;

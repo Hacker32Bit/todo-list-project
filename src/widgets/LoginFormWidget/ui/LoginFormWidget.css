@@ -9,85 +9,90 @@
 }
 
 .login-form label {
-    font: var(--font-l);
-    display: block;
-    padding-bottom: 5px;
-    cursor: pointer;
+  font: var(--font-l);
+  display: block;
+  padding-bottom: 5px;
+  cursor: pointer;
 }
 
 .login-form label:hover {
-    color: var(--secondary-color);
+  color: var(--secondary-color);
 }
 
 .login-form input {
-    background: var(--bg-secondary-theme);
-    color: var(--primary-color);
-    display: block;
-    border: 0px;
-    border-radius: 10px;
-    padding: 10px;
-    margin-bottom: 10px;
-    width: 260px;
+  background: var(--bg-secondary-theme);
+  color: var(--primary-color);
+  display: block;
+  border: 0px;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+  width: 260px;
 }
 
-.login-form input:hover, .login-form input:focus {
-    background: var(--primary-color);
-    color: var(--bg-secondary-theme);
-    outline: none;
+.login-form input:hover,
+.login-form input:focus {
+  background: var(--primary-color);
+  color: var(--bg-secondary-theme);
+  outline: none;
 }
 
 .login-form button.btn {
-    margin: 10px 0px;
-    font: var(--font-l);
-    color: #ecf0f1;
-    border: 0;
-    width: 280px;
-    padding: 10px 20px;
-    background: #e67e22;
-    border-radius: 10px;
+  margin: 10px 0px;
+  font: var(--font-l);
+  color: #ecf0f1;
+  border: 0;
+  width: 280px;
+  padding: 10px 20px;
+  background: #e67e22;
+  border-radius: 10px;
 }
 
 .login-form button.btn:hover {
-    cursor: pointer;
-    background-color: #d35400;
+  cursor: pointer;
+  background-color: #d35400;
 }
 
 .login-form .social-buttons {
-    margin: 0 -10px;
-    display: flex;
+  margin: 0 -10px;
+  display: flex;
 }
 
 .login-form .social-buttons button {
-    padding: 10px;
-    margin: 10px;
-    font-size: 30px;
-    width: auto;
-    flex-basis: 100%;
-    background: var(--bg-secondary-theme);
+  padding: 10px;
+  margin: 10px;
+  font-size: 30px;
+  width: auto;
+  flex-basis: 100%;
+  background: var(--bg-secondary-theme);
 }
 
 .login-form .social-buttons svg {
-    vertical-align: top;
+  vertical-align: top;
 }
 
 .login-form .social-buttons button:hover {
-    background: var(--primary-color);
-    color: var(--bg-secondary-theme);
+  background: var(--primary-color);
+  color: var(--bg-secondary-theme);
 }
 
-
 .login-form a {
-    text-decoration: none;
-    color: #2ecc71;
+  text-decoration: none;
+  color: #2ecc71;
 }
 
 .login-form a:hover {
-    color: #27ae60;
+  color: #27ae60;
 }
 
 .login-form a.red {
-    color: #e74c3c;
+  color: #e74c3c;
 }
 .login-form a.red:hover {
-    color: #c0392b;
+  color: #c0392b;
+}
+
+p.error {
+  color: #e74c3c;
+  width: 280px;
 }

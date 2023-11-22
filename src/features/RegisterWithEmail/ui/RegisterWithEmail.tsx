@@ -7,7 +7,7 @@ const RegisterWithEmail: FC = () => {
   const [password, setPassword] = useState<string>("");
   const [cpassword, setCpassword] = useState<string>("");
   const [rules, setRules] = useState<boolean>(false);
-  const [errorList, setErrorList] = useState<string[]>([])
+  const [errorList, setErrorList] = useState<string[]>([]);
 
   const onChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
@@ -25,50 +25,53 @@ const RegisterWithEmail: FC = () => {
     setRules((prev) => !prev);
   };
 
-  useEffect(() => console.log('mounted'), [errorList]);
+  useEffect(() => {}, [errorList]);
 
   const Register = () => {
-    setErrorList([])
-    console.log(errorList)
+    setErrorList([]);
 
-    if(password != cpassword) {
-      console.log("im here", password, cpassword)
+    if (password !== cpassword) {
       setErrorList((prev) => {
-        if(!prev.includes("Both passwords are not same!"))
-          prev.push("Both passwords are not same!")
+        if (!prev.includes("Both passwords are not same!")) {
+          const newArr = [...prev];
+          newArr.push("Both passwords are not same!");
+          return newArr;
+        }
 
         return prev;
-      })
+      });
     }
-    if(!rules) {
+    if (!rules) {
       setErrorList((prev) => {
-        if(!prev.includes("Please, read rules and mark check!"))
-          prev.push("Please, read rules and mark check!")
-        return prev
-      })
+        if (!prev.includes("Please, read rules and mark check!")) {
+          const newArr = [...prev];
+          newArr.push("Please, read rules and mark check!");
+          return newArr;
+        }
+        return prev;
+      });
     }
-    console.log(errorList)
 
-    if(errorList.length){
+    if (errorList.length) {
       return;
     }
 
     createUserWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    // Signed in 
-    console.log(userCredential)
-    // ...
-  })
-  .catch((error) => {
-    if (error.message){
-      setErrorList((prev) => {
-        if(!prev.includes(error.message))
-          prev.push(error.message)
-        return prev
+      .then((userCredential) => {
+        // Signed in
+        console.log(userCredential);
+        // ...
       })
-    }
-    console.log(error.message)
-  });
+      .catch((error) => {
+        setErrorList((prev) => {
+          if (!prev.includes(error.message)) {
+            const newArr = [...prev];
+            newArr.push(error.message);
+            return newArr;
+          }
+          return prev;
+        });
+      });
   };
 
   return (
@@ -99,9 +102,13 @@ const RegisterWithEmail: FC = () => {
           </label>
         </div>
       </form>
-      {
-        errorList.length ? (errorList.map((el) => <p key={el}>{el}</p>)) : null
-        }
+      {errorList.length
+        ? errorList.map((el) => (
+            <p className="error" key={el}>
+              {el}
+            </p>
+          ))
+        : null}
       <button className="btn register" onClick={Register}>
         Sign Up
       </button>
