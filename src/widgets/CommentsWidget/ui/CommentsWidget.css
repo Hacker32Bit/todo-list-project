@@ -1,0 +1,47 @@
+.modal-content {
+  overflow-x: hidden;
+  overflow-y: auto;
+  max-height: 600px;
+}
+
+.send-comment {
+  width: 100%;
+  padding: 10px 0px;
+  display: inline-block;
+  position: relative;
+}
+
+.send-comment textarea {
+  width: calc(100% - 20px);
+  resize: none;
+  height: auto;
+  margin-top: 5px;
+  padding: 10px;
+  background-color: var(--bg-secondary-theme);
+  border: 0;
+  border-radius: 5px;
+  color: var(--primary-color);
+  outline: none;
+  display: block;
+}
+
+.send-comment .btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 20px;
+  border: 0;
+  background-color: var(--bg-secondary-theme);
+  color: var(--primary-color);
+  position: absolute;
+  bottom: 15px;
+  right: 5px;
+}
+
+.send-comment svg {
+  vertical-align: middle;
+}
+
+.send-comment .btn:hover {
+  background-color: var(--bg-primary-theme);
+  cursor: pointer;
+}

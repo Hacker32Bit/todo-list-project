@@ -1,48 +1,47 @@
 .comment {
-    padding: 10px;
-    margin: 10px 0;
-    background-color: var(--bg-secondary-theme);
-    border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+  background-color: var(--bg-secondary-theme);
+  border-radius: 5px;
 }
 
 .comment .user-photo {
-    float: left;
-    width: 40px;
+  float: left;
+  width: 40px;
 }
 
 .comment .user-photo img {
-    width: 30px;
-    height: 30px;
-    border-radius: 15px;
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
 }
 
 .comment .user-data {
-    width: 100%;
+  width: 100%;
 }
 
 .comment .user-data a {
-    display: inline-block;
-    text-decoration: none;
-    color: var(--primary-color);
+  display: inline-block;
+  text-decoration: none;
+  color: var(--primary-color);
 }
 
 .comment .user-data a:hover {
-    text-decoration: underline;
-    color: var(--secondary-color);
+  text-decoration: underline;
+  color: var(--secondary-color);
 }
 
-
 .comment .user-data span {
-    font: var(--font-s);
-    padding: 7px;
-    display: inline-block;
+  font: var(--font-s);
+  padding: 7px;
+  display: inline-block;
 }
 
 .comment-content {
-    display: flow-root;
+  display: flow-root;
 }
 
 .comment-content .replies .comment {
-    background-color: var(--bg-primary-theme);
-    border-radius: 5px;
+  background-color: var(--bg-primary-theme);
+  border-radius: 5px;
 }

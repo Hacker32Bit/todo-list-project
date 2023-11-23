@@ -3,8 +3,8 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: calc(100vh - 64px);
   opacity: 0.85;
   cursor: pointer;
 }
@@ -12,11 +12,15 @@
 .modal {
   background-color: var(--bg-primary-theme);
   border-radius: 10px;
-  width: 500px;
-  color: var(--primary-color);
+  color: var(--primary-color);  
   position: absolute;
-  top: 50px;
+  min-width: 320px;
+  max-height: calc(100vh - 100px);
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   cursor: auto;
+  white-space: pre-line;
 }
 
 .modal h1 {
