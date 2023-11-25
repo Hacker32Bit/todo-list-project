@@ -4,11 +4,11 @@ import SidebarWidget from "widgets/SidebarWidget";
 
 import { DashboardPageProps } from "./DashboardPage.interface";
 
-const DashboardPage: React.FC<DashboardPageProps> = ({ items }) => {
+const DashboardPage: React.FC<DashboardPageProps> = ({ items, setItemsState }) => {
   return (
     <>
       <SidebarWidget />
-      <DashboardWidget items={items}/>
+      <DashboardWidget items={items} setItemsState={setItemsState}/>
     </>
   );
 };

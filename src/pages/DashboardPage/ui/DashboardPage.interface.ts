@@ -1,3 +1,4 @@
+import { Dispatch, SetStateAction } from "react";
 
 export interface TasksProps {
     id: number;
@@ -14,8 +15,10 @@ export interface ItemsProps {
     author: string;
     date: Date;
     tasks?: TasksProps[];
+    setItemsState?: Dispatch<SetStateAction<ItemsProps[]>>;
 }
 
 export interface DashboardPageProps {
     items: ItemsProps[];
+    setItemsState: Dispatch<SetStateAction<ItemsProps[]>>;
 }

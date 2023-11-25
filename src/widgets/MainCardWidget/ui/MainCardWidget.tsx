@@ -1,14 +1,22 @@
 import React from "react";
 import { BsPlusLg } from "react-icons/bs";
-import { SlOptions } from "react-icons/sl"
-import { LuLayoutTemplate } from "react-icons/lu"
+import { SlOptions } from "react-icons/sl";
+import { LuLayoutTemplate } from "react-icons/lu";
 import CardWidget from "../../CardWidget";
 
 import { ItemsProps } from "pages/DashboardPage/ui/DashboardPage.interface";
 
 import "./MainCardWidget.css";
+import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 
-const MainCardWidget: React.FC<ItemsProps> = ({ id, mainTitle, author, date, tasks }) => {
+const MainCardWidget: React.FC<ItemsProps> = ({
+  id,
+  mainTitle,
+  author,
+  date,
+  tasks,
+  setItemsState,
+}) => {
   return (
     <div className="main-card">
       <div className="title">
@@ -17,13 +25,37 @@ const MainCardWidget: React.FC<ItemsProps> = ({ id, mainTitle, author, date, tas
           <SlOptions />
         </div>
       </div>
-      {
-        tasks?.map((el) => {
-          return(
-            <CardWidget key={el.id} card={el}/>
-          )
-        })
-      }
+      <Droppable droppableId={id.toString()} key={id}>
+        {(provider) => {
+          return (
+            <div
+              {...provider.droppableProps}
+              ref={provider.innerRef}
+              className="droppable-wrapper"
+            >
+              {tasks?.map((el, index) => {
+                return (
+                  <Draggable key={el.id} draggableId={el.id.toString()} index={index}>
+                    {(provider) => {
+                      return (
+                        <div
+                          className="draggable-wrapper"
+                          ref={provider.innerRef}
+                          {...provider.dragHandleProps}
+                          {...provider.draggableProps}
+                        >
+                          <CardWidget key={el.id} card={el} />
+                        </div>
+                      );
+                    }}
+                  </Draggable>
+                );
+              })}
+            </div>
+          );
+        }}
+      </Droppable>
+
       <div className="actions">
         <div className="add-btn">
           <BsPlusLg />

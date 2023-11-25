@@ -1,106 +1,120 @@
 .main-card {
-    background: var(--bg-secondary-theme);
-    display: inline-block;
-    padding: 10px;
-    margin: 20px;
-    border-radius: 10px;
-    width: 250px;
+  background: var(--bg-secondary-theme);
+  display: inline-block;
+  padding: 10px;
+  margin: 20px;
+  border-radius: 10px;
+  width: 250px;
+  vertical-align: top;
 }
 
-
 .title {
-    display: block;
-    height: 35px;
-    padding: 5px;
+  display: block;
+  height: 35px;
+  padding: 5px;
 }
 
 .title h3 {
-    float: left;
-    padding: 5px;
+  float: left;
+  padding: 5px;
 }
 
 .title svg {
-    display: inline-block; 
-    height: 24px;
-    width: 24px;
+  display: inline-block;
+  height: 24px;
+  width: 24px;
 }
 
 .title .options-btn {
-    float: right;
-    height: 24px;
-    padding: 5px;
-    border-radius: 5px;
+  float: right;
+  height: 24px;
+  padding: 5px;
+  border-radius: 5px;
 }
 
 .title .options-btn:hover {
-    cursor: pointer;
-    background: var(--bg-primary-theme);
+  cursor: pointer;
+  background: var(--bg-primary-theme);
 }
 
 .actions {
-    display: block;
-    height: 24px;
-    padding-top: 5px;
+  display: block;
+  height: 24px;
+  padding-top: 5px;
 }
 
 .actions .add-btn {
-    float: left;
-    height: 24px;
-    padding: 5px;
-    border-radius: 5px;
+  float: left;
+  height: 24px;
+  padding: 5px;
+  border-radius: 5px;
 }
 
 .actions .add-btn:hover {
-    cursor: pointer;
-    background: var(--bg-primary-theme);
+  cursor: pointer;
+  background: var(--bg-primary-theme);
 }
 
 .actions .add-btn span {
-    display: inline-block;
-    padding-left: 5px;
+  display: inline-block;
+  padding-left: 5px;
 }
 
 .actions svg {
-    display: inline-block; 
-    height: 24px;
-    width: 24px;
-    vertical-align: middle;
+  display: inline-block;
+  height: 24px;
+  width: 24px;
+  vertical-align: middle;
 }
 
 .actions .mark-all-btn {
-    float: right;
-    height: 24px;
-    padding: 5px;
-    border-radius: 5px;
+  float: right;
+  height: 24px;
+  padding: 5px;
+  border-radius: 5px;
 }
 
 .actions .mark-all-btn:hover {
-    cursor: pointer;
-    background: var(--bg-primary-theme);
+  cursor: pointer;
+  background: var(--bg-primary-theme);
 }
 
 .add-maincard {
-    display: inline-block;
-    vertical-align: top;
-    margin: 20px;
+  display: inline-block;
+  vertical-align: top;
+  margin: 20px;
 }
 
 .add-maincard button {
-    height: 60px;
-    width: 60px;
-    border: 0;
-    border-radius: 30px;
-    background-color: var(--bg-secondary-theme);
-    color: var(--secondary-color);
-    font: var(--font-l);
+  height: 60px;
+  width: 60px;
+  border: 0;
+  border-radius: 30px;
+  background-color: var(--bg-secondary-theme);
+  color: var(--secondary-color);
+  font: var(--font-l);
 }
 
 .add-maincard svg {
-    vertical-align: sub;
+  vertical-align: sub;
 }
 
 .add-maincard button:hover {
-    cursor: pointer;
-    background-color: var(--bg-primary-theme);
-    color: var(--primary-color);
+  cursor: pointer;
+  background-color: var(--bg-primary-theme);
+  color: var(--primary-color);
+}
+
+.droppable-wrapper {
+  display: block;
+  min-height: 20px;
+  max-height: 400px;
+  overflow: hidden;
+  overflow-y: scroll;
+  padding: 0 9px;
+  margin: 0 -9px;  
+}
+
+.draggable-wrapper {
+  display: block;
 }
