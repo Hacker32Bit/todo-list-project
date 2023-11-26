@@ -1,4 +1,4 @@
-import { TasksProps } from "pages/DashboardPage/ui/DashboardPage.interface";
+import { CommentsProps, TasksProps } from "pages/DashboardPage/ui/DashboardPage.interface";
 import { IoIosSend } from "react-icons/io";
 
 import "../../DescriptionWidget/ui/DescriptionWidget.css";
@@ -57,7 +57,7 @@ const CommentsWidget: React.FC<TasksProps> = ({
             </button>
           </div>
 
-          {comments.map((el: any) => {
+          {comments?.map((el: CommentsProps) => {
             return <CommentWidget key={el.id} {...el} />;
           })}
         </div>

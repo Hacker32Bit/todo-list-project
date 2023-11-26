@@ -32,11 +32,11 @@ const CardWidget: React.FC<CardWidgetProps> = ({ card }) => {
           onClick={() => setIsOpenComments(true)}
         >
           <LiaCommentDots />
-          <span>{card.comments.length}</span>
+          <span>{card.comments?.length}</span>
           <span> </span>
           <LiaComments />
           <span>
-            {card.comments.reduce(
+            {card.comments?.reduce(
               (acc: number, el: any) => acc + el.reply.length,
               0
             )}

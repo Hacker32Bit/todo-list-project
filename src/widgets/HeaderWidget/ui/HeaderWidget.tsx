@@ -75,13 +75,13 @@ const HeaderWidget: React.FC<UserProps> = ({ user, handleSignOut }) => {
                 </div>
                 <div className="line"></div>
                 <ul className="user-menu">
-                  <Link to="/profile">
+                  <Link to="#">
                     <li>Profile and visibility</li>
                   </Link>
-                  <Link to="/activity">
+                  <Link to="#">
                     <li>Activity</li>
                   </Link>
-                  <Link to="/cards">
+                  <Link to="#">
                     <li>Cards</li>
                   </Link>
                   <Link to="/settings">
@@ -90,10 +90,10 @@ const HeaderWidget: React.FC<UserProps> = ({ user, handleSignOut }) => {
                 </ul>
                 <div className="line"></div>
                 <ul className="user-menu">
-                  <Link to="/help">
+                  <Link to="#">
                     <li>Help</li>
                   </Link>
-                  <Link to="/shortcuts">
+                  <Link to="#">
                     <li>Shortcuts</li>
                   </Link>
                 </ul>

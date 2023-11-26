@@ -12,7 +12,6 @@
 .board {
   background: var(--bg-primary-color);
   padding: 20px;
-  height: auto;
   overflow-x: scroll;
   white-space: nowrap;
   min-height: fit-content;

@@ -83,12 +83,6 @@
   border: 2px solid var(--bg-primary-theme);
 }
 
-.nav-right .profile img:hover {
-  cursor: pointer;
-  margin: 8px 2px;
-  border: 5px solid var(--bg-primary-theme);
-}
-
 .profile-photo {
   float: right;
 }
@@ -101,7 +95,7 @@
   z-index: 1;
   visibility: hidden;
   opacity: 0;
-  transition: visibility 0.5s, opacity 0.5s ease;
+  transition: visibility 0.2s, opacity 0.5s ease;
 }
 
 .dropdown:hover .dropdown-content {
