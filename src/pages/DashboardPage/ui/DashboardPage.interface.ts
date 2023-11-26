@@ -1,3 +1,4 @@
+import { User } from "firebase/auth";
 import { Dispatch, SetStateAction } from "react";
 
 export interface TasksProps {
@@ -19,6 +20,7 @@ export interface ItemsProps {
 }
 
 export interface DashboardPageProps {
+    user: User | null;
     items: ItemsProps[];
     setItemsState: Dispatch<SetStateAction<ItemsProps[]>>;
 }

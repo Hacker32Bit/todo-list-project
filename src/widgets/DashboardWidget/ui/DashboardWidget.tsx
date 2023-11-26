@@ -8,6 +8,7 @@ import { DashboardPageProps, ItemsProps, TasksProps } from "pages/DashboardPage/
 import { DragDropContext } from "react-beautiful-dnd";
 
 const DashboardWidget: React.FC<DashboardPageProps> = ({
+  user,
   items,
   setItemsState,
 }) => {

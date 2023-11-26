@@ -6,22 +6,24 @@ import {
   CiUser,
   CiSettings,
 } from "react-icons/ci";
+import { Link } from "react-router-dom";
+import { UserProps } from "widgets/HeaderWidget/ui/HeaderWidget";
 
 import "./SidebarWidget.css";
-import { Link } from "react-router-dom";
 
-const SidebarWidget: React.FC = () => {
+const SidebarWidget: React.FC<UserProps> = ({user}) => {
+  console.log(user)
   return (
     <div className="sidebar">
       <div className="profile">
         <img
           src={
-            
+            user?.photoURL ||
             "https://fs01.cap.ru//www21-11/galatr/person/cb45deff-7216-4306-80f7-9e48d03f437e/no_avatar_3st4mbc2.png"
           }
           alt="User"
         ></img>
-        <h3>Name Surname</h3>
+        <h3>{user?.displayName}</h3>
         <span>Student</span>
       </div>
       <div className="line"></div>

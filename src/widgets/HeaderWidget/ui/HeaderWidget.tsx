@@ -8,9 +8,9 @@ import "./HeaderWidget.css";
 import { useTheme } from "app/providers/ThemeProvider";
 import { useColor } from "app/providers/ColorProvider";
 
-interface UserProps {
+export interface UserProps {
   user: User | null;
-  handleSignOut: () => void;
+  handleSignOut?: () => void;
 }
 
 const HeaderWidget: React.FC<UserProps> = ({ user, handleSignOut }) => {
@@ -38,31 +38,73 @@ const HeaderWidget: React.FC<UserProps> = ({ user, handleSignOut }) => {
           <Link to="/contact">
             <li>Contact</li>
           </Link>
+          {user ? (
+            <Link to="/dashboard">
+              <li>Dashboard</li>
+            </Link>
+          ) : null}
         </ul>
       </div>
       {user ? (
         <div className="nav-right">
           <div className="profile">
-            <div className="profile-photo">
-              <img
-                src={
-                  user.photoURL ||
-                  "https://fs01.cap.ru//www21-11/galatr/person/cb45deff-7216-4306-80f7-9e48d03f437e/no_avatar_3st4mbc2.png"
-                }
-                alt="User"
-              ></img>
+            <div className="dropdown">
+              <div className="profile-photo">
+                <img
+                  src={
+                    user.photoURL ||
+                    "https://fs01.cap.ru//www21-11/galatr/person/cb45deff-7216-4306-80f7-9e48d03f437e/no_avatar_3st4mbc2.png"
+                  }
+                  alt="User"
+                ></img>
+              </div>
+              <div className="dropdown-content">
+                <h3>Account</h3>
+                <div className="dropdown-profile">
+                  <img
+                    src={
+                      user.photoURL ||
+                      "https://fs01.cap.ru//www21-11/galatr/person/cb45deff-7216-4306-80f7-9e48d03f437e/no_avatar_3st4mbc2.png"
+                    }
+                    alt="User"
+                  ></img>
+                  <div className="dropdown-profile-data">
+                    <h4>{user.displayName}</h4>
+                    <span>{user.email}</span>
+                  </div>
+                </div>
+                <div className="line"></div>
+                <ul className="user-menu">
+                  <Link to="/profile">
+                    <li>Profile and visibility</li>
+                  </Link>
+                  <Link to="/activity">
+                    <li>Activity</li>
+                  </Link>
+                  <Link to="/cards">
+                    <li>Cards</li>
+                  </Link>
+                  <Link to="/settings">
+                    <li>Settings</li>
+                  </Link>
+                </ul>
+                <div className="line"></div>
+                <ul className="user-menu">
+                  <Link to="/help">
+                    <li>Help</li>
+                  </Link>
+                  <Link to="/shortcuts">
+                    <li>Shortcuts</li>
+                  </Link>
+                </ul>
+                <div className="line"></div>
+                <ul className="user-menu">
+                  <Link to="/" onClick={handleSignOut}>
+                    <li>Sign Out</li>
+                  </Link>
+                </ul>
+              </div>
             </div>
-            <ul>
-              <Link to="/" onClick={handleSignOut}>
-                <li>Sign Out</li>
-              </Link>
-              <Link to="/settings">
-                <li>Settings</li>
-              </Link>
-              <Link to="/dashboard">
-                <li>Dashboard</li>
-              </Link>
-            </ul>
           </div>
         </div>
       ) : (
