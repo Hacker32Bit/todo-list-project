@@ -16,6 +16,8 @@ const MainPage = lazy(() => import("../pages/MainPage"));
 const SettingsPage = lazy(() => import("../pages/SettingsPage"));
 const AboutPage = lazy(() => import("../pages/AboutPage"));
 const DashboardPage = lazy(() => import("../pages/DashboardPage"));
+const NotFound = lazy(() => import("../pages/NotFound"))
+const BoardsPage = lazy(() => import("../pages/BoardsPage"))
 
 const App = () => {
   const items: ItemsProps[] = [
@@ -282,6 +284,7 @@ const App = () => {
 
   const handleSignOut = () => {
     signOut(auth).catch((err) => console.log(err));
+    
   };
 
   const { theme } = useTheme();
@@ -290,17 +293,19 @@ const App = () => {
   return (
     <BrowserRouter>
       <div className={`app ${theme}`}>
-        <HeaderWidget user={user} handleSignOut={handleSignOut} />
+        <HeaderWidget handleSignOut={handleSignOut} />
         <Suspense fallback={<h1>Loading...</h1>}>
           <div className={`container ${color}`}>
             <Routes>
               <Route path="/about" element={<AboutPage />} />
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/settings" element={<SettingsPage />} />
-              <Route path="/dashboard" element={<DashboardPage user={user} items={itemsState} setItemsState={setItemsState}/>} />
+              <Route path="/dashboard/:id" element={<DashboardPage user={user} items={itemsState} setItemsState={setItemsState}/>} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/register" element={<RegisterPage />} />
+              <Route path="/boards" element={<BoardsPage />} />
               <Route path="/" element={<MainPage />} />
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </div>
         </Suspense>

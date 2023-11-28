@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { AiOutlineBgColors } from "react-icons/ai";
 import { BsFillSunFill, BsFillMoonFill } from "react-icons/bs";
 import { User } from "firebase/auth";
@@ -7,15 +7,25 @@ import { User } from "firebase/auth";
 import "./HeaderWidget.css";
 import { useTheme } from "app/providers/ThemeProvider";
 import { useColor } from "app/providers/ColorProvider";
+import { useSelector } from "react-redux";
 
 export interface UserProps {
-  user: User | null;
+  user?: User | null;
   handleSignOut?: () => void;
 }
 
-const HeaderWidget: React.FC<UserProps> = ({ user, handleSignOut }) => {
+const HeaderWidget: React.FC<UserProps> = ({ handleSignOut }) => {
   const { theme, toggleTheme } = useTheme();
   const { toggleColor } = useColor();
+
+  const user = useSelector((state: any) => state.user);
+  const navigate = useNavigate();
+
+  // useEffect(() => {
+  //   if (!user.profile || !user.profile.uid) {
+  //     navigate("/login");
+  //   }
+  // }, [user]);
 
   return (
     <div className="header">
@@ -29,30 +39,32 @@ const HeaderWidget: React.FC<UserProps> = ({ user, handleSignOut }) => {
       </div>
       <div className="nav-left">
         <ul>
-          <Link to="/">
-            <li>Home</li>
-          </Link>
+          {user && user.profile && user.profile.uid ? (
+            <Link to="/boards">
+              <li>Boards</li>
+            </Link>
+          ) : (
+            <Link to="/">
+              <li>Home</li>
+            </Link>
+          )}
+
           <Link to="/about">
             <li>About</li>
           </Link>
           <Link to="/contact">
             <li>Contact</li>
           </Link>
-          {user ? (
-            <Link to="/dashboard">
-              <li>Dashboard</li>
-            </Link>
-          ) : null}
         </ul>
       </div>
-      {user ? (
+      {user && user.profile && user.profile.uid ? (
         <div className="nav-right">
           <div className="profile">
             <div className="dropdown">
               <div className="profile-photo">
                 <img
                   src={
-                    user.photoURL ||
+                    user.profile.photoURL ||
                     "https://fs01.cap.ru//www21-11/galatr/person/cb45deff-7216-4306-80f7-9e48d03f437e/no_avatar_3st4mbc2.png"
                   }
                   alt="User"
@@ -63,14 +75,14 @@ const HeaderWidget: React.FC<UserProps> = ({ user, handleSignOut }) => {
                 <div className="dropdown-profile">
                   <img
                     src={
-                      user.photoURL ||
+                      user.profile.photoURL ||
                       "https://fs01.cap.ru//www21-11/galatr/person/cb45deff-7216-4306-80f7-9e48d03f437e/no_avatar_3st4mbc2.png"
                     }
                     alt="User"
                   ></img>
                   <div className="dropdown-profile-data">
-                    <h4>{user.displayName}</h4>
-                    <span>{user.email}</span>
+                    <h4>{user.profile.displayName}</h4>
+                    <span>{user.profile.email}</span>
                   </div>
                 </div>
                 <div className="line"></div>

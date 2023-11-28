@@ -1,25 +1,20 @@
+import { useAppDispatch } from "hooks/useAppDispatch";
 import { FC } from "react";
-import { auth } from "../../../firebase";
-import { GithubAuthProvider, signInWithPopup } from "firebase/auth";
 import { FaGithub } from "react-icons/fa"
 import { useNavigate } from "react-router-dom";
+import { loginWithGithub } from "redux/thunks/loginWithGithub";
 
 const SignInWithGithub: FC = () => {
   const navigate = useNavigate()
+  const dispatch = useAppDispatch()
 
-  const singIn = async () => {
-    const provider = new GithubAuthProvider();
-
-    try {
-      await signInWithPopup(auth, provider);
-      navigate('/dashboard');
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const signIn = async () => {
+    await dispatch(loginWithGithub())
+    navigate("/boards")
+  }
 
   return (
-    <button className="btn" onClick={singIn}>
+    <button className="btn" onClick={signIn}>
       <FaGithub />
     </button>
   );

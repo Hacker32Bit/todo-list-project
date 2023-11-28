@@ -2,6 +2,8 @@ import React, { FC, useEffect, useState } from "react";
 import { auth } from "../../../firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import { registerWithEmail } from "redux/thunks/registerWithEmail";
+import { useAppDispatch } from "hooks/useAppDispatch";
 
 const RegisterWithEmail: FC = () => {
   const [email, setEmail] = useState<string>("");
@@ -11,6 +13,7 @@ const RegisterWithEmail: FC = () => {
   const [errorList, setErrorList] = useState<string[]>([]);
 
   const navigate = useNavigate()
+  const dispatch = useAppDispatch()
 
   const onChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
@@ -30,7 +33,7 @@ const RegisterWithEmail: FC = () => {
 
   useEffect(() => {}, [errorList]);
 
-  const Register = () => {
+  const Register = async () => {
     setErrorList([]);
 
     if (password !== cpassword) {
@@ -59,23 +62,9 @@ const RegisterWithEmail: FC = () => {
       return;
     }
 
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in
-        console.log(userCredential);
-        navigate('/dashboard');
-        // ...
-      })
-      .catch((error) => {
-        setErrorList((prev) => {
-          if (!prev.includes(error.message)) {
-            const newArr = [...prev];
-            newArr.push(error.message);
-            return newArr;
-          }
-          return prev;
-        });
-      });
+    await dispatch(registerWithEmail({email, password}))
+    navigate("/boards")
+    
   };
 
   return (

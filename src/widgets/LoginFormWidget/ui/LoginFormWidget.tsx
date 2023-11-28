@@ -19,7 +19,6 @@ const LoginFormWidget: React.FC = () => {
           <p>
             Not registred? <Link to="/register">Do it now!</Link>
           </p>
-          <p>Forgot password? <Link to="/contact" className="red">Restore!</Link></p>
       </div>
   );
 };

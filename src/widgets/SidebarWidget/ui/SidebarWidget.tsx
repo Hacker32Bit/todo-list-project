@@ -4,44 +4,41 @@ import {
   CiCalendarDate,
   CiViewBoard,
   CiUser,
-  CiSettings,
 } from "react-icons/ci";
 import { Link } from "react-router-dom";
 import { UserProps } from "widgets/HeaderWidget/ui/HeaderWidget";
 
 import "./SidebarWidget.css";
+import { useSelector } from "react-redux";
 
-const SidebarWidget: React.FC<UserProps> = ({user}) => {
-  console.log(user)
+const SidebarWidget: React.FC<UserProps> = () => {
+  const user = useSelector((state: any) => state.user);
+  const boards = useSelector((state: any) => state.boards);
+
   return (
     <div className="sidebar">
       <div className="profile">
         <img
           src={
-            user?.photoURL ||
+            user.profile.photoURL ||
             "https://fs01.cap.ru//www21-11/galatr/person/cb45deff-7216-4306-80f7-9e48d03f437e/no_avatar_3st4mbc2.png"
           }
           alt="User"
         ></img>
-        <h3>{user?.displayName}</h3>
+        <h3>{user.profile.displayName}</h3>
         <span>Student</span>
       </div>
       <div className="line"></div>
       <div className="menu">
         <ul>
-          <Link to="#">
+          <Link to="/boards">
             <li>
-              <CiViewBoard /> Board
+              <CiViewBoard /> Boards
             </li>
           </Link>
           <Link to="#">
             <li>
               <CiUser /> Members
-            </li>
-          </Link>
-          <Link to="#">
-            <li>
-              <CiSettings /> Workspace settings
             </li>
           </Link>
         </ul>
@@ -63,17 +60,22 @@ const SidebarWidget: React.FC<UserProps> = ({user}) => {
         </ul>
       </div>
       <div className="line"></div>
-      <div className="menu">
-        <h3>Your boards</h3>
-        <ul>
-          <Link to="#">
-            <li>Board 1</li>
-          </Link>
-          <Link to="#">
-            <li>Board 2</li>
-          </Link>
-        </ul>
-      </div>
+      {boards.boards ? (
+        <div className="menu">
+          <h3>Your boards</h3>
+          <ul>
+            {boards.boards.map((el: any) => {
+              if(el.uid === user.profile.uid){
+                return (
+                  <Link to="#" key={el.id}>
+                    <li>{el.boardName}</li>
+                  </Link>
+                );
+              }
+            })}
+          </ul>
+        </div>
+      ) : null}
     </div>
   );
 };

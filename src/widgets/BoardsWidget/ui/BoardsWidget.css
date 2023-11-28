@@ -1,0 +1,66 @@
+.container .dashboard {
+  width: calc(100vw - 300px);
+  background: var(--bg-primary-theme);
+  margin: 0px;
+  float: right;
+}
+
+.dashboard h1 {
+  text-align: left;
+}
+
+.board {
+  background: var(--bg-primary-color);
+  padding: 20px;
+  min-height: fit-content;
+  height: calc(100vh - 168px);
+  overflow-y: hidden;
+}
+
+.add-board {
+  display: inline-block;
+  vertical-align: top;
+  margin: 20px;
+}
+
+.add-board button {
+  height: 60px;
+  width: 60px;
+  border: 0;
+  border-radius: 30px;
+  background-color: var(--bg-secondary-theme);
+  color: var(--secondary-color);
+  font: var(--font-l);
+}
+
+.add-board svg {
+  vertical-align: sub;
+}
+
+.add-board button:hover {
+  cursor: pointer;
+  background-color: var(--bg-primary-theme);
+  color: var(--primary-color);
+}
+
+.create-board {
+}
+
+.create-board input {
+  background-color: var(--bg-primary-theme);
+  border: 1px solid var(--bg-secondary-theme);
+  border-radius: 10px 10px 0 0;
+  padding: 10px;
+  display: block;
+  outline: 0;
+  width: 200px;
+  color: var(--primary-color);
+}
+
+.create-board button {
+  width: 222px;
+  height: 50px;
+  font: var(--font-m);
+  border-radius: 0 0 10px 10px;
+  color: var(--primary-color);
+}
