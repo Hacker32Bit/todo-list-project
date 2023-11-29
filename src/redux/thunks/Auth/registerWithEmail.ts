@@ -1,15 +1,16 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { GithubAuthProvider, signInWithPopup } from "firebase/auth";
-import { auth } from "../../firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../../firebase";
 import { User } from "redux/store.interfaces";
 
 
-export const loginWithGithub = createAsyncThunk(
-    "user/loginWithGithub",
-    async (_, { rejectWithValue }) => {
+export const registerWithEmail = createAsyncThunk(
+    "user/registerWithEmail",
+    async (data: {email: string, password: string}, { rejectWithValue }) => {
+        const { email, password } = data
+        console.log(data)
         try {
-            const provider = new GithubAuthProvider();
-            const result = await signInWithPopup(auth, provider);
+            const result = await createUserWithEmailAndPassword(auth, email, password)
             const userData: User = {
                 uid: result.user.uid,
                 email: result.user.email,

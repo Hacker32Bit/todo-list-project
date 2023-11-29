@@ -9,7 +9,6 @@
 }
 
 .title {
-  display: block;
   height: 35px;
   padding: 5px;
 }
@@ -65,18 +64,6 @@
   height: 24px;
   width: 24px;
   vertical-align: middle;
-}
-
-.actions .mark-all-btn {
-  float: right;
-  height: 24px;
-  padding: 5px;
-  border-radius: 5px;
-}
-
-.actions .mark-all-btn:hover {
-  cursor: pointer;
-  background: var(--bg-primary-theme);
 }
 
 .add-maincard {

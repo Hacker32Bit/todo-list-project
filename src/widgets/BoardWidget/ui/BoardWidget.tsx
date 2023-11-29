@@ -2,6 +2,7 @@ import { FaSave, FaTrashAlt } from "react-icons/fa";
 import "./BoardWidget.css";
 import { FaRegPenToSquare } from "react-icons/fa6";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const BoardWidget: React.FC<any> = ({
   board,
@@ -10,9 +11,10 @@ const BoardWidget: React.FC<any> = ({
 }) => {
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const [editNewTitle, setEditNewTitle] = useState<string>(board.boardName);
+  const navigate = useNavigate()
 
   return (
-    <div className="board-card">
+    <div className="board-card" onClick={() => navigate(`../dashboard/${board.id}`)}>
       <div className="title">
         {isEdit ? (
           <>

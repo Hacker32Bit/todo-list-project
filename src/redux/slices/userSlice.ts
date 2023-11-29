@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { loginWithEmail } from "redux/thunks/loginWithEmail";
-import { loginWithGithub } from "redux/thunks/loginWithGithub";
-import { loginWithGoogle } from "redux/thunks/loginWithGoogle";
-import { registerWithEmail } from "redux/thunks/registerWithEmail";
+import { loginWithEmail } from "redux/thunks/Auth/loginWithEmail";
+import { loginWithGithub } from "redux/thunks/Auth/loginWithGithub";
+import { loginWithGoogle } from "redux/thunks/Auth/loginWithGoogle";
+import { registerWithEmail } from "redux/thunks/Auth/registerWithEmail";
 
 const userSlice = createSlice({
     name: "user",

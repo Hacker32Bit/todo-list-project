@@ -1,14 +1,14 @@
-import { User } from './../store.interfaces';
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { auth } from "../../firebase";
+import { GithubAuthProvider, signInWithPopup } from "firebase/auth";
+import { auth } from "../../../firebase";
+import { User } from "redux/store.interfaces";
 
 
-export const loginWithGoogle = createAsyncThunk(
-    "user/loginWithGoogle",
+export const loginWithGithub = createAsyncThunk(
+    "user/loginWithGithub",
     async (_, { rejectWithValue }) => {
         try {
-            const provider = new GoogleAuthProvider();
+            const provider = new GithubAuthProvider();
             const result = await signInWithPopup(auth, provider);
             const userData: User = {
                 uid: result.user.uid,

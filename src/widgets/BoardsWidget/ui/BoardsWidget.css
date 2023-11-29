@@ -43,9 +43,6 @@
   color: var(--primary-color);
 }
 
-.create-board {
-}
-
 .create-board input {
   background-color: var(--bg-primary-theme);
   border: 1px solid var(--bg-secondary-theme);

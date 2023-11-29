@@ -1,8 +1,6 @@
 import React, { FC, useEffect, useState } from "react";
-import { auth } from "../../../firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { registerWithEmail } from "redux/thunks/registerWithEmail";
+import { registerWithEmail } from "redux/thunks/Auth/registerWithEmail";
 import { useAppDispatch } from "hooks/useAppDispatch";
 
 const RegisterWithEmail: FC = () => {

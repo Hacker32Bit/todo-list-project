@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { MdOutlineSubject } from "react-icons/md";
-import { LiaCommentDots, LiaComments } from "react-icons/lia";
+import { LiaCommentDots} from "react-icons/lia";
 import { FaRegPenToSquare } from "react-icons/fa6";
 
 import "./CardWidget.css";
@@ -9,7 +9,8 @@ import DescriptionWidget from "widgets/DescriptionWidget";
 import { CardWidgetProps } from "./CardWidget.interface";
 import CommentsWidget from "widgets/CommentsWidget";
 
-const CardWidget: React.FC<CardWidgetProps> = ({ card }) => {
+const CardWidget: React.FC<any> = ({ card }) => {
+  console.log(card)
   const [isOpenDescription, setIsOpenDescription] = useState<boolean>(false);
   const [isOpenComments, setIsOpenComments] = useState<boolean>(false);
 

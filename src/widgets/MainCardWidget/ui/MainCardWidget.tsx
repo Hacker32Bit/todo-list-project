@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { BsPlusLg } from "react-icons/bs";
 import { SlOptions } from "react-icons/sl";
 import { LuLayoutTemplate } from "react-icons/lu";
-import { IoMdClose } from "react-icons/io"
+import { IoMdClose } from "react-icons/io";
 import CardWidget from "../../CardWidget";
 
 import { ItemsProps } from "pages/DashboardPage/ui/DashboardPage.interface";
@@ -10,10 +10,15 @@ import { ItemsProps } from "pages/DashboardPage/ui/DashboardPage.interface";
 import "./MainCardWidget.css";
 import { Draggable, Droppable } from "react-beautiful-dnd";
 import { Link } from "react-router-dom";
+import { useAppDispatch } from "hooks/useAppDispatch";
+import { useSelector } from "react-redux";
+import { fetchCards } from "redux/thunks/Cards/fetchCards";
 
-const MainCardWidget: React.FC<ItemsProps> = ({
+const MainCardWidget: React.FC<any> = ({
   id,
-  mainTitle,
+  uid,
+  created,
+  title,
   author,
   date,
   tasks,
@@ -21,18 +26,37 @@ const MainCardWidget: React.FC<ItemsProps> = ({
 }) => {
   const [optionsIsOpen, setOptionsIsOpen] = useState<boolean>(false);
 
+  const dispatch = useAppDispatch();
+  const cards = useSelector((state: any) => {
+    return state.cards;
+  });
+
+  useEffect(() => {
+    dispatch(fetchCards());
+  }, [dispatch]);
+
   return (
     <div className="main-card">
       <div className="title">
-        <h3>{mainTitle}</h3>
-        <div className="options-btn" title="Options" onClick={() => setOptionsIsOpen((prev) => !prev)}>
+        <h3 title={created?.toDate().toString()}>{title}</h3>
+        <div
+          className="options-btn"
+          title="Options"
+          onClick={() => setOptionsIsOpen((prev) => !prev)}
+        >
           <SlOptions />
         </div>
         {optionsIsOpen ? (
           <div className="options">
             <div className="title">
               <h3>Activity</h3>
-              <div className="options-btn" title="Close" onClick={() => setOptionsIsOpen(false)}><IoMdClose /></div>
+              <div
+                className="options-btn"
+                title="Close"
+                onClick={() => setOptionsIsOpen(false)}
+              >
+                <IoMdClose />
+              </div>
             </div>
             <ul className="options-menu">
               <Link to="#">
@@ -47,7 +71,7 @@ const MainCardWidget: React.FC<ItemsProps> = ({
             </ul>
             <div className="line"></div>
             <ul className="options-menu">
-            <Link to="#">
+              <Link to="#">
                 <li>Sort by...</li>
               </Link>
             </ul>
@@ -74,27 +98,29 @@ const MainCardWidget: React.FC<ItemsProps> = ({
               ref={provider.innerRef}
               className="droppable-wrapper"
             >
-              {tasks?.map((el, index) => {
-                return (
-                  <Draggable
-                    key={el.id}
-                    draggableId={el.id.toString()}
-                    index={index}
-                  >
-                    {(provider) => {
-                      return (
-                        <div
-                          className="draggable-wrapper"
-                          ref={provider.innerRef}
-                          {...provider.dragHandleProps}
-                          {...provider.draggableProps}
-                        >
-                          <CardWidget key={el.id} card={el} />
-                        </div>
-                      );
-                    }}
-                  </Draggable>
-                );
+              {cards?.cards.map((el: any, index: number) => {
+                if (id === el.mainCardId) {
+                  return (
+                    <Draggable
+                      key={el.id}
+                      draggableId={el.id.toString()}
+                      index={index}
+                    >
+                      {(provider) => {
+                        return (
+                          <div
+                            className="draggable-wrapper"
+                            ref={provider.innerRef}
+                            {...provider.dragHandleProps}
+                            {...provider.draggableProps}
+                          >
+                            <CardWidget key={el.id} card={el} />
+                          </div>
+                        );
+                      }}
+                    </Draggable>
+                  );
+                }
               })}
             </div>
           );
@@ -102,12 +128,12 @@ const MainCardWidget: React.FC<ItemsProps> = ({
       </Droppable>
 
       <div className="actions">
+        {
+          
+        }
         <div className="add-btn">
           <BsPlusLg />
           <span>Add a card</span>
-        </div>
-        <div className="mark-all-btn" title="Create from template">
-          <LuLayoutTemplate />
         </div>
       </div>
     </div>

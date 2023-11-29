@@ -300,7 +300,7 @@ const App = () => {
               <Route path="/about" element={<AboutPage />} />
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/settings" element={<SettingsPage />} />
-              <Route path="/dashboard/:id" element={<DashboardPage user={user} items={itemsState} setItemsState={setItemsState}/>} />
+              <Route path="/dashboard/:boardId" element={<DashboardPage user={user} items={itemsState} setItemsState={setItemsState}/>} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/register" element={<RegisterPage />} />
               <Route path="/boards" element={<BoardsPage />} />

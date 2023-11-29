@@ -4,11 +4,11 @@ import { MdOutlineAddToPhotos } from "react-icons/md";
 import { useAppDispatch } from "hooks/useAppDispatch";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { fetchBoards } from "redux/thunks/fetchBoards";
-import { createBoard } from "redux/thunks/createBoard";
+import { fetchBoards } from "redux/thunks/Boards/fetchBoards";
+import { createBoard } from "redux/thunks/Boards/createBoard";
 import { Timestamp } from "@firebase/firestore";
-import { deleteBoard } from "redux/thunks/deleteBoard";
-import { editBoard } from "redux/thunks/editBoard";
+import { deleteBoard } from "redux/thunks/Boards/deleteBoard";
+import { updateBoard } from "redux/thunks/Boards/updateBoard";
 
 const BoardsWidget: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -38,7 +38,7 @@ const BoardsWidget: React.FC = () => {
   const deleteBoardFunction = async (id: string) => {
     console.log("Delete", id);
     await dispatch(deleteBoard(id));
-    dispatch(fetchBoards());
+    dispatch(fetchBoards())
   };
 
   const editBoardFunction = async (oldId: string, title: string) => {
@@ -48,8 +48,8 @@ const BoardsWidget: React.FC = () => {
     };
     const { id, ...newObj } = oldObj;
     console.log(newObj);
-    await dispatch(editBoard({ oldId, newObj }));
-    dispatch(fetchBoards());
+    await dispatch(updateBoard({ oldId, newObj }));
+    dispatch(fetchBoards())
   };
 
   useEffect(() => {

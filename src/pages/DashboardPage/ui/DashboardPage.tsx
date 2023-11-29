@@ -23,9 +23,6 @@ const DashboardPage: React.FC<DashboardPageProps> = ({ items, setItemsState }) =
     return state.user;
   });
 
-
-  console.log(boards, user)
-
   return (
     <>
       <SidebarWidget user={user}/>

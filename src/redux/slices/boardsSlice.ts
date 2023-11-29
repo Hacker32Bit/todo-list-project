@@ -1,6 +1,8 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { createBoard } from "redux/thunks/createBoard";
-import { fetchBoards } from "redux/thunks/fetchBoards";
+import { createSlice } from "@reduxjs/toolkit";
+import { createBoard } from "redux/thunks/Boards/createBoard";
+import { deleteBoard } from "redux/thunks/Boards/deleteBoard";
+import { fetchBoards } from "redux/thunks/Boards/fetchBoards";
+import { updateBoard } from "redux/thunks/Boards/updateBoard";
 
 const boardsSlice = createSlice({
     name: "boards",
@@ -30,6 +32,35 @@ const boardsSlice = createSlice({
             state.boards.push(action.payload as any)
         },
         [createBoard.rejected as any]: (state, action) => {
+            state.loading = false;
+            state.error = action.error.message;
+        },
+        [deleteBoard.pending as any]: (state) => {
+            state.loading = true
+        },
+        [deleteBoard.fulfilled as any]: (state, action) => {
+            state.loading = false;
+            state.boards = state.boards.filter((
+                (board: any) => board.id !== action.payload
+            ))
+        },
+        [deleteBoard.rejected as any]: (state, action) => {
+            state.loading = false;
+            state.error = action.error.message;
+        },
+        [updateBoard.pending as any]: (state) => {
+            state.loading = true
+        },
+        [updateBoard.fulfilled as any]: (state, action) => {
+            state.loading = false;
+            const index = state.boards.findIndex(
+                (board: any) => board.id === action.payload.id
+            )
+            if (index !== -1) {
+                state.boards[index] = action.payload
+            }
+        },
+        [updateBoard.rejected as any]: (state, action) => {
             state.loading = false;
             state.error = action.error.message;
         },

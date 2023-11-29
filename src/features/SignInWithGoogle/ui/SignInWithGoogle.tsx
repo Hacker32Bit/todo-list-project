@@ -2,7 +2,7 @@ import { FC } from "react";
 import { FcGoogle } from "react-icons/fc"
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "hooks/useAppDispatch";
-import { loginWithGoogle } from "redux/thunks/loginWithGoogle";
+import { loginWithGoogle } from "redux/thunks/Auth/loginWithGoogle";
 
 const SignInWithGoogle: FC = () => {
   const navigate = useNavigate()

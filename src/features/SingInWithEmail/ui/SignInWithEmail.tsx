@@ -1,7 +1,7 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "hooks/useAppDispatch";
-import { loginWithEmail } from "redux/thunks/loginWithEmail";
+import { loginWithEmail } from "redux/thunks/Auth/loginWithEmail";
 
 const SignInWithEmail: FC = () => {
   const [email, setEmail] = useState<string>("");

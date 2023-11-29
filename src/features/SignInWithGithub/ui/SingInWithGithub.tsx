@@ -2,7 +2,7 @@ import { useAppDispatch } from "hooks/useAppDispatch";
 import { FC } from "react";
 import { FaGithub } from "react-icons/fa"
 import { useNavigate } from "react-router-dom";
-import { loginWithGithub } from "redux/thunks/loginWithGithub";
+import { loginWithGithub } from "redux/thunks/Auth/loginWithGithub";
 
 const SignInWithGithub: FC = () => {
   const navigate = useNavigate()
