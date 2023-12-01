@@ -1,17 +1,16 @@
-import React, { useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
 import { AiOutlineBgColors } from "react-icons/ai";
 import { BsFillSunFill, BsFillMoonFill } from "react-icons/bs";
-import { User } from "firebase/auth";
 
 import "./HeaderWidget.css";
 import { useTheme } from "app/providers/ThemeProvider";
 import { useColor } from "app/providers/ColorProvider";
 import { useSelector } from "react-redux";
+import { UsersProps } from "redux/store.interfaces";
 
 export interface UserProps {
-  user?: User | null;
-  handleSignOut?: () => void;
+  handleSignOut: () => void;
 }
 
 const HeaderWidget: React.FC<UserProps> = ({ handleSignOut }) => {
@@ -19,9 +18,10 @@ const HeaderWidget: React.FC<UserProps> = ({ handleSignOut }) => {
   const { toggleColor } = useColor();
 
   const user = useSelector((state: any) => state.user);
-  const profile = useSelector((state: any) => state.users.users.find((el: any) => el.id === user.profile?.uid))
-  const navigate = useNavigate();
-
+  const profile = useSelector((state: any) => state.users.users.find((el: UsersProps) => el.id  === user.profile?.uid))
+  
+  // const navigate = useNavigate();
+  //
   // useEffect(() => {
   //   if (!user.profile || !user.profile.uid) {
   //     navigate("/login");

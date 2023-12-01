@@ -3,16 +3,18 @@ import "./BoardsWidget.css";
 import { MdOutlineAddToPhotos } from "react-icons/md";
 import { useAppDispatch } from "hooks/useAppDispatch";
 import { useSelector } from "react-redux";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { fetchBoards } from "redux/thunks/Boards/fetchBoards";
 import { createBoard } from "redux/thunks/Boards/createBoard";
 import { Timestamp } from "@firebase/firestore";
 import { deleteBoard } from "redux/thunks/Boards/deleteBoard";
 import { updateBoard } from "redux/thunks/Boards/updateBoard";
+import { RootState } from "redux/store";
+import { BoardsProps } from "redux/store.interfaces";
 
 const BoardsWidget: React.FC = () => {
   const dispatch = useAppDispatch();
-  const boards = useSelector((state: any) => {
+  const boards = useSelector((state: RootState) => {
     return state.boards;
   });
 
@@ -46,7 +48,7 @@ const BoardsWidget: React.FC = () => {
 
   const editBoardFunction = async (oldId: string, title: string) => {
     const oldObj = {
-      ...boards.boards.find((el: any) => el.id === oldId),
+      ...boards.boards.find((el: BoardsProps) => el.id === oldId),
       boardName: title,
     };
     const { id, ...newObj } = oldObj;
@@ -64,9 +66,9 @@ const BoardsWidget: React.FC = () => {
       <h1>Boards</h1>
       <div className="board">
         {
-        boards.loading ? (<BoardWidget loading={true}/>) : (
+        boards.loading ? (<h1>Loading</h1>) : (
         boards.boards
-          ? boards.boards.map((item: any) => {
+          ? boards.boards.map((item: BoardsProps) => {
               if (item.uid === userUid)
                 return (
                   <BoardWidget
@@ -76,7 +78,9 @@ const BoardsWidget: React.FC = () => {
                     editBoardFunction={editBoardFunction}
                   />
                 );
-            })
+              return null;
+            }
+            )
           : null)}
         <div className="add-board">
           {createIsOpen ? (

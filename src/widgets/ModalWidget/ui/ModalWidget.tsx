@@ -8,15 +8,18 @@ interface ModalProps {
 }
 
 const ModalWidget: FC<ModalProps> = ({ close, children }) => {
-  const modalRef = useRef<any>(null);
-
-  const closeModal = (event: MouseEvent) => {
-    if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
-      close(false);
-    }
-  };
+  const modalRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
+    const closeModal = (event: MouseEvent) => {
+      if (
+        modalRef.current &&
+        !modalRef.current.contains(event.target as Node)
+      ) {
+        close(false);
+      }
+    };
+
     setTimeout(() => {
       document.addEventListener("click", closeModal);
 
@@ -24,7 +27,7 @@ const ModalWidget: FC<ModalProps> = ({ close, children }) => {
         document.removeEventListener("click", closeModal);
       };
     }, 1);
-  }, []);
+  }, [close]);
 
   return (
     <>

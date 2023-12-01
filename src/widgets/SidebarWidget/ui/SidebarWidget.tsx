@@ -6,27 +6,28 @@ import {
   CiUser,
 } from "react-icons/ci";
 import { Link } from "react-router-dom";
-import { UserProps } from "widgets/HeaderWidget/ui/HeaderWidget";
 
 import "./SidebarWidget.css";
 import { useSelector } from "react-redux";
+import { RootState } from "redux/store";
+import { BoardsProps, UsersProps } from "redux/store.interfaces";
 
-const SidebarWidget: React.FC<UserProps> = () => {
+const SidebarWidget: React.FC = () => {
   const user = useSelector((state: any) => state.user);
-  const profile = useSelector((state: any) => state.users.users.find((el: any) => el.id === user.profile.uid))
-  const boards = useSelector((state: any) => state.boards);
+  const profile = useSelector((state: any) => state.users.users.find((el: UsersProps) => el.id === user.profile?.uid))
+  const boards = useSelector((state: RootState) => state.boards);
 
   return (
     <div className="sidebar">
       <div className="profile">
         <img
           src={
-            profile.photoURL ||
+            profile?.photoURL ||
             "https://fs01.cap.ru//www21-11/galatr/person/cb45deff-7216-4306-80f7-9e48d03f437e/no_avatar_3st4mbc2.png"
           }
           alt="User"
         ></img>
-        <h3>{profile.displayName}</h3>
+        <h3>{profile?.displayName}</h3>
         <span>Student</span>
       </div>
       <div className="line"></div>
@@ -65,7 +66,7 @@ const SidebarWidget: React.FC<UserProps> = () => {
         <div className="menu">
           <h3>Your boards</h3>
           <ul>
-            {boards.boards.map((el: any) => {
+            {boards.boards.map((el: BoardsProps) => {
               if(el.uid === user.profile.uid){
                 return (
                   <Link to="#" key={el.id}>
@@ -73,6 +74,7 @@ const SidebarWidget: React.FC<UserProps> = () => {
                   </Link>
                 );
               }
+              return null;
             })}
           </ul>
         </div>

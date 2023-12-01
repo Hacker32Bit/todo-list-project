@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { BoardsProps } from "redux/store.interfaces";
 import { createBoard } from "redux/thunks/Boards/createBoard";
 import { deleteBoard } from "redux/thunks/Boards/deleteBoard";
 import { fetchBoards } from "redux/thunks/Boards/fetchBoards";
@@ -7,7 +8,7 @@ import { updateBoard } from "redux/thunks/Boards/updateBoard";
 const boardsSlice = createSlice({
     name: "boards",
     initialState: {
-        boards: [] as any,
+        boards: [] as BoardsProps[],
         loading: false,
         error: null,
     },
@@ -29,7 +30,7 @@ const boardsSlice = createSlice({
         },
         [createBoard.fulfilled as any]: (state, action) => {
             state.loading = false;
-            state.boards.push(action.payload as any)
+            state.boards.push(action.payload as BoardsProps)
         },
         [createBoard.rejected as any]: (state, action) => {
             state.loading = false;
@@ -41,7 +42,7 @@ const boardsSlice = createSlice({
         [deleteBoard.fulfilled as any]: (state, action) => {
             state.loading = false;
             state.boards = state.boards.filter((
-                (board: any) => board.id !== action.payload
+                (board: BoardsProps) => board.id !== action.payload
             ))
         },
         [deleteBoard.rejected as any]: (state, action) => {
@@ -54,7 +55,7 @@ const boardsSlice = createSlice({
         [updateBoard.fulfilled as any]: (state, action) => {
             state.loading = false;
             const index = state.boards.findIndex(
-                (board: any) => board.id === action.payload.id
+                (board: BoardsProps) => board.id === action.payload.id
             )
             if (index !== -1) {
                 state.boards[index] = action.payload

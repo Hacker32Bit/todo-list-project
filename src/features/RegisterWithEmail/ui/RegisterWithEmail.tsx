@@ -63,7 +63,7 @@ const RegisterWithEmail: FC = () => {
     }
 
     const {payload} = await dispatch(registerWithEmail({ email, password }))
-    dispatch(createUsers(payload))
+    await dispatch(createUsers(payload))
     navigate("/boards");
   };
 

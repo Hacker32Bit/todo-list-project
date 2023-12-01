@@ -1,8 +1,5 @@
+import { CommentsProps, UserProps, UsersProps } from "redux/store.interfaces";
 
-export interface CommentWidgetProps {
-    id: number;
-    author: string;
-    message: string;
-    date: Date;
-    reply?: CommentWidgetProps[]
+export interface CommentWidgetProps extends CommentsProps {
+    user?: UserProps
 }

@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { GithubAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "../../../firebase";
-import { User } from "redux/store.interfaces";
+import { UserProps } from "redux/store.interfaces";
 
 
 export const loginWithGithub = createAsyncThunk(
@@ -10,7 +10,7 @@ export const loginWithGithub = createAsyncThunk(
         try {
             const provider = new GithubAuthProvider();
             const result = await signInWithPopup(auth, provider);
-            const userData: User = {
+            const userData: UserProps = {
                 uid: result.user.uid,
                 email: result.user.email,
                 displayName: result.user.displayName,

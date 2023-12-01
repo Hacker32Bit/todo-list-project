@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { UsersProps } from "redux/store.interfaces";
 import { createUsers } from "redux/thunks/Users/createUsers";
 import { deleteUsers } from "redux/thunks/Users/deleteUsers";
 import { fetchUsers } from "redux/thunks/Users/fetchUsers";
@@ -7,7 +8,7 @@ import { updateUsers } from "redux/thunks/Users/updateUsers";
 const usersSlice = createSlice({
     name: "users",
     initialState: {
-        users: [] as any,
+        users: [] as UsersProps[],
         loading: false,
         error: null,
     },

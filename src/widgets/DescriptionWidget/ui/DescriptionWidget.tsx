@@ -1,8 +1,3 @@
-import {
-  CommentsProps,
-  TasksProps,
-} from "pages/DashboardPage/ui/DashboardPage.interface";
-
 import "./DescriptionWidget.css";
 import "../../CommentWidget/ui/CommentWidget.css";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
@@ -18,28 +13,31 @@ import { FaRegPenToSquare } from "react-icons/fa6";
 import { updateCards } from "redux/thunks/Cards/updateCards";
 import { fetchCards } from "redux/thunks/Cards/fetchCards";
 import { FaSave, FaTrashAlt } from "react-icons/fa";
+import { DescriptionWidgetProps } from "./DescriptionWidget.interfaces";
+import { RootState } from "redux/store";
+import { CommentsProps, UsersProps } from "redux/store.interfaces";
 
-const DescriptionWidget: React.FC<any> = ({
+const DescriptionWidget: React.FC<DescriptionWidgetProps> = ({
   id,
   title,
   created,
   description,
   uid,
-  mainCardId,
   deleteCardFunction,
 }) => {
   const dispatch = useAppDispatch();
-  const comments = useSelector((state: any) => state.comments);
-  const users = useSelector((state: any) => state.users);
+
+  const comments = useSelector((state: RootState) => state.comments);
+  const users = useSelector((state: RootState) => state.users);
+
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const [editDescription, setEditDescription] = useState<string>(description);
 
   const descriptionTextareaRef = useRef(null);
   const commentTextareaRef = useRef(null);
   const [message, setMessage] = useState("");
-  const handleMessageChange = (event: any) => setMessage(event.target.value);
-  const handleDescriptionChange = (event: any) =>
-    setEditDescription(event.target.value);
+  const handleMessageChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => setMessage(event.target.value);
+  const handleDescriptionChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => setEditDescription(event.target.value);
 
   useLayoutEffect(() => {
     // Reset height - important to shrink on delete
@@ -67,7 +65,7 @@ const DescriptionWidget: React.FC<any> = ({
         50
       )}px`;
     }
-  }, [editDescription]);
+  }, [editDescription, isEdit]);
 
   const handleSendComment = () => {
     dispatch(
@@ -83,11 +81,6 @@ const DescriptionWidget: React.FC<any> = ({
   };
 
   const handleEdit = async () => {
-    if (editDescription.replaceAll(" ", "").length === 0) {
-      alert("Title must be have at least 1 character");
-      return;
-    }
-
     const oldId: string = id;
 
     const newObj = {
@@ -157,7 +150,7 @@ const DescriptionWidget: React.FC<any> = ({
         <span>Created: {created.toDate().toDateString()}</span>
         <div className="line"></div>
         <span>
-          Author: {users.users.find((el: any) => el.id === uid).displayName}
+          Author: {users.users.find((el: UsersProps) => el.id === uid)?.displayName}
         </span>
         <div className="line"></div>
         <div className="comments-wrapper">
@@ -178,17 +171,18 @@ const DescriptionWidget: React.FC<any> = ({
             </button>
           </div>
 
-          {comments?.comments.map((el: any) => {
+          {comments?.comments.map((el: CommentsProps) => {
             if (el.cardId === id) {
               //console.log(el);
               return (
                 <CommentWidget
                   key={el.id}
                   {...el}
-                  user={users.users.find((user: any) => user.id === el.uid)}
+                  user={users.users.find((user: UsersProps) => user.id === el.uid)}
                 />
               );
             }
+            return null;
           })}
         </div>
       </div>

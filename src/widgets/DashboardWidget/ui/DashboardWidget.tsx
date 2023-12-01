@@ -4,12 +4,7 @@ import { MdOutlineAddToPhotos } from "react-icons/md";
 import "./DashboardWidget.css";
 import MainCardWidget from "../../MainCardWidget/ui/MainCardWidget";
 
-import {
-  DashboardPageProps,
-  ItemsProps,
-  TasksProps,
-} from "pages/DashboardPage/ui/DashboardPage.interface";
-import { DragDropContext } from "react-beautiful-dnd";
+import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import { useParams } from "react-router-dom";
 import { useAppDispatch } from "hooks/useAppDispatch";
 import { useSelector } from "react-redux";
@@ -20,22 +15,24 @@ import { deleteMainCards } from "redux/thunks/MainCards/deleteMainCards";
 import { updateMainCards } from "redux/thunks/MainCards/updateMainCards";
 import { updateCards } from "redux/thunks/Cards/updateCards";
 import { fetchCards } from "redux/thunks/Cards/fetchCards";
+import { RootState } from "redux/store";
+import { BoardsProps, CardsProps, MainCardsProps } from "redux/store.interfaces";
 
-const DashboardWidget: React.FC<any> = ({ user, items, setItemsState }) => {
+const DashboardWidget: React.FC = () => {
   const { boardId } = useParams<{ boardId: string }>();
 
   const dispatch = useAppDispatch();
-  const mainCards = useSelector((state: any) => {
+  const mainCards = useSelector((state: RootState) => {
     return state.mainCards;
   });
-  const userUid = useSelector((state: any) => {
-    return state.user.profile.uid;
-  });
-  const cards = useSelector((state: any) => {
+  const cards = useSelector((state: RootState) => {
     return state.cards;
   });
+  const user = useSelector((state: any) => {
+    return state.user;
+  });
   const boardName = useSelector((state: any) => {
-    return state.boards.boards.find((el: any) => el.id === boardId).boardName;
+    return state.boards.boards.find((el: BoardsProps) => el.id === boardId).boardName;
   });
 
   const [createIsOpen, setCreateIsOpen] = useState<boolean>(false);
@@ -50,7 +47,7 @@ const DashboardWidget: React.FC<any> = ({ user, items, setItemsState }) => {
       createMainCards({
         title,
         created: Timestamp.fromDate(new Date()),
-        uid: userUid,
+        uid: user.profile.uid,
         boardId,
       })
     );
@@ -67,7 +64,7 @@ const DashboardWidget: React.FC<any> = ({ user, items, setItemsState }) => {
 
   const editMainCardFunction = async (oldId: string, title: string) => {
     const oldObj = {
-      ...mainCards.mainCards.find((el: any) => el.id === oldId),
+      ...mainCards.mainCards.find((el: MainCardsProps) => el.id === oldId),
       title,
     };
     const { id, ...newObj } = oldObj;
@@ -78,7 +75,7 @@ const DashboardWidget: React.FC<any> = ({ user, items, setItemsState }) => {
 
   const editCardFunction = async (sourceId: string, newId: string) => {
     const oldObj = {
-      ...cards.cards.find((el: any) => el.id === sourceId),
+      ...cards.cards.find((el: CardsProps) => el.id === sourceId),
       mainCardId: newId,
     };
 
@@ -89,7 +86,7 @@ const DashboardWidget: React.FC<any> = ({ user, items, setItemsState }) => {
     dispatch(fetchCards());
   };
 
-  const onDragEnd = (result: any) => {
+  const onDragEnd = (result: DropResult) => {
     const { source, destination, draggableId } = result;
 
     console.log("draggableId: ", draggableId, "destination: ", destination);
@@ -173,9 +170,9 @@ const DashboardWidget: React.FC<any> = ({ user, items, setItemsState }) => {
           <h1>Loading...</h1>
         ) : (
           <DragDropContext onDragEnd={onDragEnd}>
-            {mainCards.mainCards.map((el: any) => {
+            {mainCards.mainCards.map((el: MainCardsProps) => {
               //console.log(el, el.id, "Main card ID")
-              if (el.boardId === boardId && el.uid === user.profile.uid) {
+              if (el.boardId === boardId && el.uid === user.profile?.uid) {
                 return (
                   <MainCardWidget
                     key={el.id}
@@ -185,6 +182,7 @@ const DashboardWidget: React.FC<any> = ({ user, items, setItemsState }) => {
                   />
                 );
               }
+              return null;
             })}
           </DragDropContext>
         )}

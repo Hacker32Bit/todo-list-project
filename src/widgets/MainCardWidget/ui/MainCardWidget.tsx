@@ -1,11 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BsPlusLg } from "react-icons/bs";
 import { SlOptions } from "react-icons/sl";
-import { LuLayoutTemplate } from "react-icons/lu";
 import { IoMdClose } from "react-icons/io";
 import CardWidget from "../../CardWidget";
 
-import { ItemsProps } from "pages/DashboardPage/ui/DashboardPage.interface";
 
 import "./MainCardWidget.css";
 import { Draggable, Droppable } from "react-beautiful-dnd";
@@ -18,16 +16,14 @@ import { createCards } from "redux/thunks/Cards/createCards";
 import { Timestamp } from "@firebase/firestore";
 import { deleteCards } from "redux/thunks/Cards/deleteCards";
 import { updateCards } from "redux/thunks/Cards/updateCards";
+import { RootState } from "redux/store";
+import { CardsProps } from "redux/store.interfaces";
+import { MainCardWidgetProps } from "./MainCardWidget.interfaces";
 
-const MainCardWidget: React.FC<any> = ({
+const MainCardWidget: React.FC<MainCardWidgetProps> = ({
   id,
-  uid,
   created,
   title,
-  author,
-  date,
-  tasks,
-  setItemsState,
   editMainCardFunction,
   deleteMainCardFunction,
 }) => {
@@ -38,7 +34,7 @@ const MainCardWidget: React.FC<any> = ({
   const [addTitle, setAddTitle] = useState<string>("");
 
   const dispatch = useAppDispatch();
-  const cards = useSelector((state: any) => {
+  const cards = useSelector((state: RootState) => {
     return state.cards;
   });
   const userUid = useSelector((state: any) => {
@@ -77,7 +73,7 @@ const MainCardWidget: React.FC<any> = ({
     }
     
     const oldObj = {
-      ...cards.cards.find((el: any) => el.id === oldId),
+      ...cards.cards.find((el: CardsProps) => el.id === oldId),
       title,
     };
     const { id, ...newObj } = oldObj;
@@ -183,7 +179,7 @@ const MainCardWidget: React.FC<any> = ({
               ref={provider.innerRef}
               className="droppable-wrapper"
             >
-              {cards?.cards.map((el: any, index: number) => {
+              {cards?.cards.map((el: CardsProps, index: number) => {
                 if (id === el.mainCardId) {
                   return (
                     <Draggable
@@ -211,6 +207,7 @@ const MainCardWidget: React.FC<any> = ({
                     </Draggable>
                   );
                 }
+                return null;
               })}
             </div>
           );

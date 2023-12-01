@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../../firebase";
-import { User } from "redux/store.interfaces";
+import { UserProps } from "redux/store.interfaces";
 
 
 export const loginWithEmail = createAsyncThunk(
@@ -11,7 +11,7 @@ export const loginWithEmail = createAsyncThunk(
         console.log(data)
         try {
             const result = await signInWithEmailAndPassword(auth, email, password)
-            const userData: User = {
+            const userData: UserProps = {
                 uid: result.user.uid,
                 email: result.user.email,
                 displayName: result.user.displayName,

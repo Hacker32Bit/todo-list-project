@@ -6,20 +6,21 @@ import { FaRegPenToSquare } from "react-icons/fa6";
 import "./CardWidget.css";
 import ModalWidget from "widgets/ModalWidget";
 import DescriptionWidget from "widgets/DescriptionWidget";
-import { CardWidgetProps } from "./CardWidget.interface";
 import { useSelector } from "react-redux";
 import { fetchComments } from "redux/thunks/Comments/fetchComments";
 import { useAppDispatch } from "hooks/useAppDispatch";
 import { FaSave } from "react-icons/fa";
+import { RootState } from "redux/store";
+import { CardWidgetProps } from "./CardWidget.interface";
+import { CommentsProps } from "redux/store.interfaces";
 
-const CardWidget: React.FC<any> = ({
+const CardWidget: React.FC<CardWidgetProps> = ({
   id,
-  mainCardId,
   title,
   uid,
   created,
-  card,
   description,
+  mainCardId,
   provider,
   editCardFunction,
   deleteCardFunction,
@@ -29,7 +30,7 @@ const CardWidget: React.FC<any> = ({
   const [editTitle, setEditTitle] = useState<string>(title);
 
   const dispatch = useAppDispatch();
-  const comments = useSelector((state: any) => {
+  const comments = useSelector((state: RootState) => {
     return state.comments;
   });
 
@@ -73,7 +74,7 @@ const CardWidget: React.FC<any> = ({
                 <LiaCommentDots />
                 <span>
                   {
-                    comments.comments.filter((el: any) => el.cardId === id)
+                    comments.comments.filter((el: CommentsProps) => el.cardId === id)
                       .length
                   }
                 </span>
@@ -94,6 +95,7 @@ const CardWidget: React.FC<any> = ({
             created={created}
             title={title}
             description={description}
+            mainCardId={mainCardId}
             deleteCardFunction={deleteCardFunction}
           />
         </ModalWidget>
