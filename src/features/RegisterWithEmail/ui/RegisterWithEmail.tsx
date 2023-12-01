@@ -1,7 +1,9 @@
 import React, { FC, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { registerWithEmail } from "redux/thunks/Auth/registerWithEmail";
 import { useAppDispatch } from "hooks/useAppDispatch";
+import { fetchUsers } from "redux/thunks/Users/fetchUsers";
+import { createUsers } from "redux/thunks/Users/createUsers";
 
 const RegisterWithEmail: FC = () => {
   const [email, setEmail] = useState<string>("");
@@ -10,8 +12,8 @@ const RegisterWithEmail: FC = () => {
   const [rules, setRules] = useState<boolean>(false);
   const [errorList, setErrorList] = useState<string[]>([]);
 
-  const navigate = useNavigate()
-  const dispatch = useAppDispatch()
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const onChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
@@ -60,10 +62,14 @@ const RegisterWithEmail: FC = () => {
       return;
     }
 
-    await dispatch(registerWithEmail({email, password}))
-    navigate("/boards")
-    
+    const {payload} = await dispatch(registerWithEmail({ email, password }))
+    dispatch(createUsers(payload))
+    navigate("/boards");
   };
+
+  useEffect(() => {
+    dispatch(fetchUsers())
+  }, [dispatch])
 
   return (
     <>
@@ -87,9 +93,9 @@ const RegisterWithEmail: FC = () => {
         <div className="rule">
           <input type="checkbox" checked={rules} onChange={checkRules} />
           <label className="rule">
-            <a href="#" className="rule">
+            <Link to="#" className="rule">
               I have read & agree with terms & conditions
-            </a>
+            </Link>
           </label>
         </div>
       </form>

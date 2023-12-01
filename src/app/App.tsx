@@ -280,11 +280,10 @@ const App = () => {
     });
 
     return unsubscribe;
-  }, []);
+  }, [setUser]);
 
   const handleSignOut = () => {
     signOut(auth).catch((err) => console.log(err));
-    
   };
 
   const { theme } = useTheme();
@@ -294,7 +293,7 @@ const App = () => {
     <BrowserRouter>
       <div className={`app ${theme}`}>
         <HeaderWidget handleSignOut={handleSignOut} />
-        <Suspense fallback={<h1>Loading...</h1>}>
+        <Suspense fallback={<div><h1>Loading...</h1></div>}>
           <div className={`container ${color}`}>
             <Routes>
               <Route path="/about" element={<AboutPage />} />

@@ -1,55 +1,104 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { MdOutlineSubject } from "react-icons/md";
-import { LiaCommentDots} from "react-icons/lia";
+import { LiaCommentDots } from "react-icons/lia";
 import { FaRegPenToSquare } from "react-icons/fa6";
 
 import "./CardWidget.css";
 import ModalWidget from "widgets/ModalWidget";
 import DescriptionWidget from "widgets/DescriptionWidget";
 import { CardWidgetProps } from "./CardWidget.interface";
-import CommentsWidget from "widgets/CommentsWidget";
+import { useSelector } from "react-redux";
+import { fetchComments } from "redux/thunks/Comments/fetchComments";
+import { useAppDispatch } from "hooks/useAppDispatch";
+import { FaSave } from "react-icons/fa";
 
-const CardWidget: React.FC<any> = ({ card }) => {
-  console.log(card)
+const CardWidget: React.FC<any> = ({
+  id,
+  mainCardId,
+  title,
+  uid,
+  created,
+  card,
+  description,
+  provider,
+  editCardFunction,
+  deleteCardFunction,
+}) => {
   const [isOpenDescription, setIsOpenDescription] = useState<boolean>(false);
-  const [isOpenComments, setIsOpenComments] = useState<boolean>(false);
+  const [isEdit, setIsEdit] = useState<boolean>(false);
+  const [editTitle, setEditTitle] = useState<string>(title);
+
+  const dispatch = useAppDispatch();
+  const comments = useSelector((state: any) => {
+    return state.comments;
+  });
+
+  useEffect(() => {
+    dispatch(fetchComments());
+  }, [dispatch]);
 
   return (
-    <div className="card">
-      <div className="content">
-        <p>{card.title}</p>
-      </div>
-      <div className="card-actions">
-        <div
-          className="btn"
-          title="Description"
-          onClick={() => setIsOpenDescription(true)}
-        >
-          <MdOutlineSubject />
-        </div>
-        <div
-          className="btn"
-          title="Comments and replys"
-          onClick={() => setIsOpenComments(true)}
-        >
-          <LiaCommentDots />
-          <span>{card.comments?.length}</span>
-        </div>
-        <div className="btn" title="Edit">
-          <FaRegPenToSquare />
-        </div>
+    <>
+      <div className="card" {...provider.dragHandleProps}>
+        {isEdit ? (
+          <>
+            <input
+              value={editTitle}
+              onChange={(e) => setEditTitle(e.target.value)}
+              placeholder="Type main card title"
+            ></input>
+            <button
+              className="save"
+              onClick={async () => {
+                await editCardFunction(id, editTitle);
+                setIsEdit(false);
+              }}
+            >
+              <FaSave />
+            </button>
+          </>
+        ) : (
+          <>
+            <div className="content">
+              <p>{title}</p>
+            </div>
+            <div className="card-actions">
+              <div
+                className="btn"
+                title="Description and comments"
+                onClick={() => setIsOpenDescription(true)}
+              >
+                <MdOutlineSubject />
+                <span> </span>
+                <LiaCommentDots />
+                <span>
+                  {
+                    comments.comments.filter((el: any) => el.cardId === id)
+                      .length
+                  }
+                </span>
+              </div>
+
+              <div className="btn" title="Edit" onClick={() => setIsEdit(true)}>
+                <FaRegPenToSquare />
+              </div>
+            </div>
+          </>
+        )}
       </div>
       {isOpenDescription ? (
         <ModalWidget close={setIsOpenDescription}>
-          <DescriptionWidget {...card} />
+          <DescriptionWidget
+            id={id}
+            uid={uid}
+            created={created}
+            title={title}
+            description={description}
+            deleteCardFunction={deleteCardFunction}
+          />
         </ModalWidget>
       ) : null}
-      {isOpenComments ? (
-        <ModalWidget close={setIsOpenComments}>
-          <CommentsWidget {...card}/>
-        </ModalWidget>
-      ) : null}
-    </div>
+    </>
   );
 };
 

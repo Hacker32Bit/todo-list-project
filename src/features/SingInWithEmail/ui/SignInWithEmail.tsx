@@ -19,7 +19,7 @@ const SignInWithEmail: FC = () => {
 
   const signIn = async () => {
     await dispatch(loginWithEmail({email, password}))
-    navigate("/dashboard")
+    navigate("/boards")
   };
 
   return (

@@ -1,13 +1,88 @@
 .modal-content {
-    padding: 20px;
-    font: var(--font-m);
+  padding: 20px;
+  font: var(--font-m);
 }
 
 .modal-content p {
-    padding-bottom: 10px;
+  padding-bottom: 10px;
 }
 
 .modal-content span {
-    display: block;
-    padding: 10px 0;
+  display: block;
+  padding: 10px 0;
+}
+
+.modal-content {
+  overflow-x: hidden;
+  overflow-y: auto;
+  max-height: 600px;
+}
+
+.send-comment,
+.edit-description {
+  width: 100%;
+  padding: 10px 0px;
+  display: inline-block;
+  position: relative;
+}
+
+textarea {
+  width: calc(100% - 20px);
+  resize: none;
+  height: auto;
+  margin-top: 5px;
+  padding: 10px;
+  background-color: var(--bg-secondary-theme);
+  border: 0;
+  border-radius: 5px;
+  color: var(--primary-color);
+  outline: none;
+  display: block;
+}
+
+.modal-content .btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 20px;
+  border: 0;
+  background-color: var(--bg-secondary-theme);
+  color: var(--primary-color);
+  position: absolute;
+  bottom: 15px;
+  right: 5px;
+}
+
+.send-comment svg {
+  vertical-align: middle;
+}
+
+.modal-content .btn:hover {
+  background-color: var(--bg-primary-theme);
+  cursor: pointer;
+}
+
+.modal-content h3 {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 0 5px;
+}
+
+.modal-content p {
+  padding: 10px 0;
+}
+
+.modal-content .btn-edit {
+  float: left;
+  background-color: var(--bg-primary-theme);
+  position: initial;
+}
+
+.modal-content .btn-edit:hover {
+  background-color: var(--bg-secondary-theme);
+}
+
+.description-content {
+  display: block;
+  width: 100%;
+  padding-bottom: 10px;
 }

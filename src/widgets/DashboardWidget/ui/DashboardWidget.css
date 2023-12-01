@@ -18,3 +18,36 @@
   height: calc(100vh - 168px);
   overflow-y: hidden;
 }
+
+.create-main-card {
+  display: inline-block;
+  margin: 20px;
+}
+
+.create-main-card input {
+  background-color: var(--bg-primary-theme);
+  border: 1px solid var(--bg-secondary-theme);
+  border-radius: 10px 10px 0 0;
+  padding: 10px;
+  display: block;
+  outline: 0;
+  width: 228px;
+  color: var(--primary-color);
+}
+
+.create-main-card button {
+  width: 250px;
+  height: 50px;
+  font: var(--font-m);
+  border: 0;
+  border-radius: 0 0 10px 10px;
+  color: var(--primary-color);
+  cursor: pointer;
+  background-color: var(--bg-primary-theme);
+  color: var(--primary-color);
+}
+
+.create-main-card button:hover {
+  background-color: var(--bg-secondary-theme);
+  cursor: pointer;
+}

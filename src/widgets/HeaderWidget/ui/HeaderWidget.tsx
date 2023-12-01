@@ -19,6 +19,7 @@ const HeaderWidget: React.FC<UserProps> = ({ handleSignOut }) => {
   const { toggleColor } = useColor();
 
   const user = useSelector((state: any) => state.user);
+  const profile = useSelector((state: any) => state.users.users.find((el: any) => el.id === user.profile?.uid))
   const navigate = useNavigate();
 
   // useEffect(() => {
@@ -39,7 +40,7 @@ const HeaderWidget: React.FC<UserProps> = ({ handleSignOut }) => {
       </div>
       <div className="nav-left">
         <ul>
-          {user && user.profile && user.profile.uid ? (
+          {user && profile && profile.id ? (
             <Link to="/boards">
               <li>Boards</li>
             </Link>
@@ -57,14 +58,14 @@ const HeaderWidget: React.FC<UserProps> = ({ handleSignOut }) => {
           </Link>
         </ul>
       </div>
-      {user && user.profile && user.profile.uid ? (
+      {user && profile && profile.id ? (
         <div className="nav-right">
           <div className="profile">
             <div className="dropdown">
               <div className="profile-photo">
                 <img
                   src={
-                    user.profile.photoURL ||
+                    profile.photoURL ||
                     "https://fs01.cap.ru//www21-11/galatr/person/cb45deff-7216-4306-80f7-9e48d03f437e/no_avatar_3st4mbc2.png"
                   }
                   alt="User"
@@ -75,14 +76,14 @@ const HeaderWidget: React.FC<UserProps> = ({ handleSignOut }) => {
                 <div className="dropdown-profile">
                   <img
                     src={
-                      user.profile.photoURL ||
+                      profile.photoURL ||
                       "https://fs01.cap.ru//www21-11/galatr/person/cb45deff-7216-4306-80f7-9e48d03f437e/no_avatar_3st4mbc2.png"
                     }
                     alt="User"
                   ></img>
                   <div className="dropdown-profile-data">
-                    <h4>{user.profile.displayName}</h4>
-                    <span>{user.profile.email}</span>
+                    <h4>{profile.displayName}</h4>
+                    <span>{profile.email}</span>
                   </div>
                 </div>
                 <div className="line"></div>

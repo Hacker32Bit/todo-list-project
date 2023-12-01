@@ -3,7 +3,7 @@ import "./BoardsWidget.css";
 import { MdOutlineAddToPhotos } from "react-icons/md";
 import { useAppDispatch } from "hooks/useAppDispatch";
 import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { fetchBoards } from "redux/thunks/Boards/fetchBoards";
 import { createBoard } from "redux/thunks/Boards/createBoard";
 import { Timestamp } from "@firebase/firestore";
@@ -23,8 +23,9 @@ const BoardsWidget: React.FC = () => {
   const [createIsOpen, setCreateIsOpen] = useState<boolean>(false);
   const [boardName, setBoardName] = useState<string>("");
 
+
   const handleCreateBoard = () => {
-    if (boardName.length > 30) return;
+    if (boardName.length > 30 || boardName.replaceAll(" ", "").length === 0) return;
     dispatch(
       createBoard({
         boardName,
@@ -32,6 +33,8 @@ const BoardsWidget: React.FC = () => {
         uid: userUid,
       })
     );
+
+    setBoardName("");
     setCreateIsOpen(false);
   };
 
@@ -60,7 +63,9 @@ const BoardsWidget: React.FC = () => {
     <div className="dashboard">
       <h1>Boards</h1>
       <div className="board">
-        {boards.boards
+        {
+        boards.loading ? (<BoardWidget loading={true}/>) : (
+        boards.boards
           ? boards.boards.map((item: any) => {
               if (item.uid === userUid)
                 return (
@@ -72,7 +77,7 @@ const BoardsWidget: React.FC = () => {
                   />
                 );
             })
-          : null}
+          : null)}
         <div className="add-board">
           {createIsOpen ? (
             <div className="create-board">

@@ -52,6 +52,7 @@ const userSlice = createSlice({
         [registerWithEmail.fulfilled as any]: (state, action) => {
             state.loading = false;
             state.profile = action.payload;
+
         },
         [registerWithEmail.rejected as any]: (state, action) => {
             state.loading = false;

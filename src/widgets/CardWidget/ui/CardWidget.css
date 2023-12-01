@@ -5,6 +5,10 @@
     margin: 5px 0;
 }
 
+.card .content p {
+    white-space: break-spaces;
+}
+
 .card:hover {
     cursor: pointer;
     outline: 2px solid var(--bg-secondary-color);
@@ -40,3 +44,35 @@
     width: 16px;
     vertical-align: middle;
 }
+
+.card input {
+    background-color: var(--bg-secondary-theme);
+    outline: 0;
+    border: 0;
+    border-radius: 5px;
+    padding: 6px 10px;
+    color: var(--primary-color);
+    width: 210px;
+  }
+  
+  .card button {
+    cursor: pointer;
+    border: 0;
+    border-radius: 50%;
+    margin-left: -33px;
+    margin-top: 3px;
+    height: 30px;
+    width: 30px;
+    z-index: 1;
+    background-color: var(--bg-secondary-theme);
+  }
+  
+  .card button:hover {
+    background-color: var(--bg-primary-theme);
+  }
+  
+  .card button.save svg {
+    height: 16px;
+    color: var(--primary-color);
+    vertical-align: text-top;
+  }

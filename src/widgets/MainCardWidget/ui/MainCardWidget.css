@@ -38,7 +38,7 @@
 
 .actions {
   display: block;
-  height: 24px;
+  height: 34px;
   padding-top: 5px;
 }
 
@@ -148,4 +148,51 @@
 
 .options .options-btn:hover {
   background-color: var(--bg-secondary-theme);
+}
+
+.title input {
+  width: 220px;
+}
+
+.title button.save {
+  border: 0;
+  cursor: pointer;
+}
+
+.title svg {
+  color: var(--primary-color);
+  font: var(--font-s);
+  height: 16px;
+  vertical-align: text-top;
+}
+
+.actions input {
+  background-color: var(--bg-primary-theme);
+  outline: 0;
+  border: 0;
+  border-radius: 5px;
+  padding: 5px 10px;
+  color: var(--primary-color);
+  width: 230px;
+}
+
+.actions button {
+  cursor: pointer;
+  border: 0;
+  border-radius: 50%;
+  margin-left: -33px;
+  margin-top: 3px;
+  height: 30px;
+  width: 30px;
+  z-index: 1;
+  background-color: var(--bg-primary-theme);
+}
+
+.actions button:hover {
+  background-color: var(--bg-secondary-theme);
+}
+
+.actions button.save svg {
+  height: 16px;
+  color: var(--primary-color);
 }

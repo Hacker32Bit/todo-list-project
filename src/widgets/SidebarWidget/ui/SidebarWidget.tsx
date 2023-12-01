@@ -13,6 +13,7 @@ import { useSelector } from "react-redux";
 
 const SidebarWidget: React.FC<UserProps> = () => {
   const user = useSelector((state: any) => state.user);
+  const profile = useSelector((state: any) => state.users.users.find((el: any) => el.id === user.profile.uid))
   const boards = useSelector((state: any) => state.boards);
 
   return (
@@ -20,12 +21,12 @@ const SidebarWidget: React.FC<UserProps> = () => {
       <div className="profile">
         <img
           src={
-            user.profile.photoURL ||
+            profile.photoURL ||
             "https://fs01.cap.ru//www21-11/galatr/person/cb45deff-7216-4306-80f7-9e48d03f437e/no_avatar_3st4mbc2.png"
           }
           alt="User"
         ></img>
-        <h3>{user.profile.displayName}</h3>
+        <h3>{profile.displayName}</h3>
         <span>Student</span>
       </div>
       <div className="line"></div>
