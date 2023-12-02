@@ -69,6 +69,7 @@ const HeaderWidget: React.FC<UserProps> = ({ handleSignOut }) => {
                     "https://fs01.cap.ru//www21-11/galatr/person/cb45deff-7216-4306-80f7-9e48d03f437e/no_avatar_3st4mbc2.png"
                   }
                   alt="User"
+                  loading="lazy"
                 ></img>
               </div>
               <div className="dropdown-content">
@@ -80,6 +81,7 @@ const HeaderWidget: React.FC<UserProps> = ({ handleSignOut }) => {
                       "https://fs01.cap.ru//www21-11/galatr/person/cb45deff-7216-4306-80f7-9e48d03f437e/no_avatar_3st4mbc2.png"
                     }
                     alt="User"
+                    loading="lazy"
                   ></img>
                   <div className="dropdown-profile-data">
                     <h4>{profile.displayName}</h4>
